@@ -50,7 +50,7 @@ public class empresasController {
 
     public void eliminar(Empresa e) throws Exception {
         System.err.println("eliminado");
-        FEmpresa.eliminar(empresa);
+        FEmpresa.eliminar(e);
         cargarDatos();
     }
 

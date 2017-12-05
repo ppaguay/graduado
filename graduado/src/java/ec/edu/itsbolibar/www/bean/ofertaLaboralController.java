@@ -65,7 +65,8 @@ public class ofertaLaboralController {
 
     public void eliminar(Oferta_laboral e) throws Exception {
         System.err.println("eliminado");
-        FOferta_laboral.eliminar(item);
+       
+        FOferta_laboral.eliminar(e);
         cargarDatos();
     }
 

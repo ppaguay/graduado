@@ -66,6 +66,7 @@ public class FOferta_laboral {
         try {
             band = AccesoDatos.ejecutaComando1(sql, lstpar);
         } catch (Exception ex) {
+            System.out.println("error al eliminar");
             throw ex;
         }
         return band;
