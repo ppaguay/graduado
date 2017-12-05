@@ -20,7 +20,7 @@
                         
                     </h:form>
                 </div>
-                <h:form class="frm-all">
+                <h:form class="frm-all" id="frmdatos">
                     <b:dataTable searching="true" value="#{empresasController.lst_empresa}"
                                  var="car">
                         <b:dataTableColumn>
@@ -52,6 +52,7 @@
                                 Ver
                             </f:facet>
                             <b:commandButton value="Ver" oncomplete="$('.modalAdd').modal()"  action="#{empresasController.ver(car)}" update="frmadd" ></b:commandButton>
+                            <b:commandButton value="Eliminar"   action="#{empresasController.eliminar(car)}" update="frmadd all:frmdatos" ></b:commandButton>
 
                         </b:dataTableColumn>
                     </b:dataTable>
@@ -121,11 +122,11 @@
                                     </div>
                                     <c:choose>
                                         <c:when test="#{empresasController.edit==false}">
-                                            <b:commandButton action="#{empresasController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all" ></b:commandButton>
+                                            <b:commandButton action="#{empresasController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
 
                                         </c:when>
                                         <c:when test="#{empresasController.edit==true}">
-                                            <b:commandButton  action="#{empresasController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all" ></b:commandButton>
+                                            <b:commandButton  action="#{empresasController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
 
                                         </c:when>
                                     </c:choose>

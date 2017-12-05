@@ -48,8 +48,10 @@ public class empresasController {
         FEmpresa.modificar(empresa);
     }
 
-    public void eliminar() throws Exception {
+    public void eliminar(Empresa e) throws Exception {
+        System.err.println("eliminado");
         FEmpresa.eliminar(empresa);
+        cargarDatos();
     }
 
     public void ver(Empresa e) throws Exception {
