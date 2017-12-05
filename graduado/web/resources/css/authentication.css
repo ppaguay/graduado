@@ -44,3 +44,6 @@ and open the template in the editor.
 .menu-title i{
     float: left!important;
 }
+.fa-icons{
+        min-width: 1.4em;
+}
