@@ -16,6 +16,10 @@
         <pattern value="/500"/>
         <view-id value="/app/views/error/500.xhtml" />
     </url-mapping>
+    <url-mapping id="logout">
+        <pattern value="/logout"/>
+        <view-id value="/app/views/autentication/logout.xhtml" />
+    </url-mapping>
     <!--fin autentication fin y error-->
     <!--admin-->
     <url-mapping id="admin">

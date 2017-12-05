@@ -33,3 +33,8 @@ and open the template in the editor.
     height: 6em;
     border-radius:50%;
 }
+
+.btn-session{
+        background: none!important;
+    border: none!important;
+}
