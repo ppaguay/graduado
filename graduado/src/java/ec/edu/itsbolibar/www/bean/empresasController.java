@@ -57,6 +57,14 @@ public class empresasController {
     public void ver(Empresa e) throws Exception {
         edit = true;
         empresa = FEmpresa.obtener(e.getCodigo());
+        
+        System.out.println("tipo:Actividad"+empresa.getTipo_actividad().getNombre());
+        for ( Tipo_actividad ta: lst_tipo_actividad ) {
+            if(ta.getCodigo()==empresa.getTipo_actividad().getCodigo()){
+                empresa.setTipo_actividad(ta);
+            }
+            
+        }
     }
 
     private void cargarDatos() throws Exception {
@@ -64,6 +72,7 @@ public class empresasController {
         lst_empresa = FEmpresa.obtener();
         lst_tipo_actividad.clear();
         lst_tipo_actividad = FTipo_actividad.obtener();
+        System.out.println("Datos Cargados");
     }
 
     public Empresa getEmpresa() {

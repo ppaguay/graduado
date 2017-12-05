@@ -7,7 +7,7 @@ public class FEmpresa{
 
  public static boolean insertar(Empresa obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into public.empresa values (?,?,?,?,?,?,?,?)";
+ String sql = "insert into empresa values (?,?,?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -35,7 +35,7 @@ throw ex;}
 
  public static boolean modificar(Empresa obj ) throws  Exception { 
  boolean band= false;
- String sql = "update public.empresa set codigo=?,cod_tipoactividad=?,nombre=?,direccion=?,telefono=?,usuario=?,pertenece=?,clave=? where codigo=?  ";
+ String sql = "update empresa set codigo=?,cod_tipoactividad=?,nombre=?,direccion=?,telefono=?,usuario=?,pertenece=?,clave=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -64,7 +64,7 @@ throw ex;}
 
  public static boolean eliminar(Empresa obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from public.empresa where codigo=? ";
+ String sql = "delete from empresa where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -85,7 +85,7 @@ throw ex;}
  public static Empresa obtener (int pcodigo) throws Exception  {  
  Empresa miEmpresa = null;
 try{ 
- String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from public.empresa where   codigo=? ";
+ String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from empresa where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -103,7 +103,7 @@ return  miEmpresa;
  public static ArrayList<Empresa> obtener () throws Exception  {  
  ArrayList<Empresa> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from public.empresa; ";
+ String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from empresa; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarEmpresas(rs);
 
