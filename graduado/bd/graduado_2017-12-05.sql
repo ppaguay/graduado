@@ -2,7 +2,8 @@
 SQLyog Community Edition- MySQL GUI v8.05 
 MySQL - 5.5.5-10.1.25-MariaDB : Database - graduado
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -38,7 +39,7 @@ CREATE TABLE `aplicar_oferta` (
 DROP TABLE IF EXISTS `capacitacion`;
 
 CREATE TABLE `capacitacion` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_tipocapacitacion` int(11) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `horas` int(11) DEFAULT NULL,
@@ -56,7 +57,7 @@ CREATE TABLE `capacitacion` (
 DROP TABLE IF EXISTS `cursado`;
 
 CREATE TABLE `cursado` (
-  `cod_graduado` int(11) NOT NULL,
+  `cod_graduado` int(11) NOT NULL ,
   `cod_capacitacion` int(11) NOT NULL,
   PRIMARY KEY (`cod_graduado`,`cod_capacitacion`),
   KEY `fk_cursado_capacitacion` (`cod_capacitacion`),
@@ -71,7 +72,7 @@ CREATE TABLE `cursado` (
 DROP TABLE IF EXISTS `empresa`;
 
 CREATE TABLE `empresa` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_tipoactividad` int(11) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `direccion` varchar(150) DEFAULT NULL,
@@ -91,7 +92,7 @@ CREATE TABLE `empresa` (
 DROP TABLE IF EXISTS `estado_civil`;
 
 CREATE TABLE `estado_civil` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -103,7 +104,7 @@ CREATE TABLE `estado_civil` (
 DROP TABLE IF EXISTS `graduado`;
 
 CREATE TABLE `graduado` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_estadocivil` int(11) DEFAULT NULL,
   `cod_tipolicencia` int(11) DEFAULT NULL,
   `nombre` varchar(150) DEFAULT NULL,
@@ -131,7 +132,7 @@ CREATE TABLE `graduado` (
 DROP TABLE IF EXISTS `historia_laboral`;
 
 CREATE TABLE `historia_laboral` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_graduado` int(11) DEFAULT NULL,
   `cod_tipocausasalida` int(11) DEFAULT NULL,
   `cod_tipocargo` int(11) DEFAULT NULL,
@@ -154,7 +155,7 @@ CREATE TABLE `historia_laboral` (
 DROP TABLE IF EXISTS `oferta_laboral`;
 
 CREATE TABLE `oferta_laboral` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_empresa` int(11) DEFAULT NULL,
   `cod_tipocargo` int(11) DEFAULT NULL,
   `cod_tiposueldo` int(11) DEFAULT NULL,
@@ -176,7 +177,7 @@ CREATE TABLE `oferta_laboral` (
 DROP TABLE IF EXISTS `parametro`;
 
 CREATE TABLE `parametro` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `valor` int(11) DEFAULT NULL,
   `descripcion` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
@@ -189,7 +190,7 @@ CREATE TABLE `parametro` (
 DROP TABLE IF EXISTS `personal`;
 
 CREATE TABLE `personal` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `cod_tipopersonal` int(11) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `clave` varchar(50) DEFAULT NULL,
@@ -205,7 +206,7 @@ CREATE TABLE `personal` (
 DROP TABLE IF EXISTS `tipo_actividad`;
 
 CREATE TABLE `tipo_actividad` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -217,7 +218,7 @@ CREATE TABLE `tipo_actividad` (
 DROP TABLE IF EXISTS `tipo_capacitacion`;
 
 CREATE TABLE `tipo_capacitacion` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -229,7 +230,7 @@ CREATE TABLE `tipo_capacitacion` (
 DROP TABLE IF EXISTS `tipo_cargo`;
 
 CREATE TABLE `tipo_cargo` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -241,7 +242,7 @@ CREATE TABLE `tipo_cargo` (
 DROP TABLE IF EXISTS `tipo_causa_salida`;
 
 CREATE TABLE `tipo_causa_salida` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -253,7 +254,7 @@ CREATE TABLE `tipo_causa_salida` (
 DROP TABLE IF EXISTS `tipo_licencia`;
 
 CREATE TABLE `tipo_licencia` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -265,7 +266,7 @@ CREATE TABLE `tipo_licencia` (
 DROP TABLE IF EXISTS `tipo_personal`;
 
 CREATE TABLE `tipo_personal` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -277,7 +278,7 @@ CREATE TABLE `tipo_personal` (
 DROP TABLE IF EXISTS `tipo_sueldo`;
 
 CREATE TABLE `tipo_sueldo` (
-  `codigo` int(11) NOT NULL,
+  `codigo` int(11) NOT NULL AUTO_INCREMENT,
   `rango` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`codigo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
