@@ -6,7 +6,9 @@
 package ec.edu.itsbolibar.www.bean;
 
 import ec.edu.itsbolivar.www.rnegocio.clases.Empresa;
+import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_actividad;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FEmpresa;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_actividad;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +25,9 @@ public class empresasController {
 
     Empresa empresa = new Empresa();
     ArrayList<Empresa> lst_empresa = new ArrayList<>();
-    boolean modal =false;
+    ArrayList<Tipo_actividad> lst_tipo_actividad = new ArrayList<>();
+    boolean modal = false;
+    boolean edit = false;
 
     public empresasController() {
         try {
@@ -34,10 +38,13 @@ public class empresasController {
     }
 
     public void insertar() throws Exception {
-       // FEmpresa.insertar(empresa);
+        FEmpresa.insertar(empresa);
+        modal = true;
+        cargarDatos();
     }
 
     public void actualizar() throws Exception {
+        modal=true;
         FEmpresa.modificar(empresa);
     }
 
@@ -45,8 +52,16 @@ public class empresasController {
         FEmpresa.eliminar(empresa);
     }
 
+    public void ver(Empresa e) throws Exception {
+        edit = true;
+        empresa = FEmpresa.obtener(e.getCodigo());
+    }
+
     private void cargarDatos() throws Exception {
+        lst_empresa.clear();
         lst_empresa = FEmpresa.obtener();
+        lst_tipo_actividad.clear();
+        lst_tipo_actividad = FTipo_actividad.obtener();
     }
 
     public Empresa getEmpresa() {
@@ -71,6 +86,27 @@ public class empresasController {
 
     public void setModal(boolean modal) {
         this.modal = modal;
+    }
+
+    public ArrayList<Tipo_actividad> getLst_tipo_actividad() {
+        return lst_tipo_actividad;
+    }
+
+    public void setLst_tipo_actividad(ArrayList<Tipo_actividad> lst_tipo_actividad) {
+        this.lst_tipo_actividad = lst_tipo_actividad;
+    }
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+
+    public void activeNew() {
+        empresa= new Empresa();
+        edit = false;
     }
 
 }

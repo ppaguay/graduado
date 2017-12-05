@@ -19,8 +19,8 @@
         <h:outputStylesheet name="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <h:outputStylesheet name="lib/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"/>
 
+        <h:outputScript name="js/jquery-3.1.1.min.js"/>
         <h:outputScript name="lib/popper.min.js" />
-        <h:outputScript name="lib/jquery-3.2.1.slim.min.js" />
         <h:outputScript name="lib/bootstrap/js/bootstrap.js" />
         <h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js" />
         <h:outputScript name="lib/chart.js/dist/Chart.min.js" />
@@ -28,6 +28,7 @@
         <h:outputScript name="js/hoverable-collapse.js" />
         <h:outputScript name="js/misc.js" />
         <h:outputScript name="js/tether.min.js" />
+        <h:outputScript name="js/jquery.dataTables.min.js" />
 
         <title>Admin</title>
     </h:head>
@@ -75,7 +76,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="admin">
                                     <!-- <i class="fa fa-dashboard"></i> -->
-                                   <i class="fa fa-home fa-icons" aria-hidden="true"></i>
+                                    <i class="fa fa-home fa-icons" aria-hidden="true"></i>
                                     <span class="menu-title">Home</span>
                                 </a>
                             </li>
@@ -107,7 +108,7 @@
                             <li class="nav-item ">
                                 <a class="nav-link" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample">
                                     <!-- <i class="fa fa-address-book"></i> -->
-                                  <i class="fa fa-opencart fa-icons" aria-hidden="true"></i>
+                                    <i class="fa fa-opencart fa-icons" aria-hidden="true"></i>
                                     <span class="menu-title">Oferta Laboral <i class="fa fa-sort-down"></i></span>
                                 </a>
                                 <div class="collapse" id="collapseExample1">
@@ -187,8 +188,8 @@
                             <li class="nav-item ">
                                 <a class="nav-link" data-toggle="collapse" href="#collapseExample5" aria-expanded="false" aria-controls="collapseExample">
                                     <!-- <i class="fa fa-address-book"></i> -->
-                                 
-                                   <i class="fa fa-certificate fa-icons" aria-hidden="true"></i>
+
+                                    <i class="fa fa-certificate fa-icons" aria-hidden="true"></i>
                                     <span class="menu-title">Capacitación <i class="fa fa-sort-down"></i></span>
                                 </a>
                                 <div class="collapse" id="collapseExample5">
@@ -225,9 +226,12 @@
                     <!-- SIDEBAR ENDS -->
 
 
-                    <div class="content-wrapper">
+                    <div style="background: white" class="content-wrapper">
                         <!--contenido-->
-                        <ui:insert name="content">Content</ui:insert>
+                        <h:form id="all">
+
+                            <ui:insert name="content">Content</ui:insert>
+                        </h:form>
                     </div>
                     <footer class="footer">
                         <div class="container-fluid clearfix">
