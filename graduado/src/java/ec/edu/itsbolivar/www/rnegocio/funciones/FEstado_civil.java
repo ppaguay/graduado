@@ -7,7 +7,7 @@ public class FEstado_civil{
 
  public static boolean insertar(Estado_civil obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into estado_civil values (?,?)";
+ String sql = "insert into public.estado_civil values (?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -28,7 +28,7 @@ throw ex;}
 
  public static boolean modificar(Estado_civil obj ) throws  Exception { 
  boolean band= false;
- String sql = "update estado_civil set codigo=?,nombre=? where codigo=?  ";
+ String sql = "update public.estado_civil set codigo=?,nombre=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -50,7 +50,7 @@ throw ex;}
 
  public static boolean eliminar(Estado_civil obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from estado_civil where codigo=? ";
+ String sql = "delete from public.estado_civil where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -71,7 +71,7 @@ throw ex;}
  public static Estado_civil obtener (int pcodigo) throws Exception  {  
  Estado_civil miEstado_civil = null;
 try{ 
- String sql = "select codigo,nombre from estado_civil where   codigo=? ";
+ String sql = "select codigo,nombre from public.estado_civil where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -89,7 +89,7 @@ return  miEstado_civil;
  public static ArrayList<Estado_civil> obtener () throws Exception  {  
  ArrayList<Estado_civil> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,nombre from estado_civil; ";
+ String sql = "select codigo,nombre from public.estado_civil; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarEstado_civils(rs);
 

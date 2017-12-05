@@ -7,7 +7,7 @@ public class FTipo_capacitacion{
 
  public static boolean insertar(Tipo_capacitacion obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into tipo_capacitacion values (?,?)";
+ String sql = "insert into public.tipo_capacitacion values (?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -28,7 +28,7 @@ throw ex;}
 
  public static boolean modificar(Tipo_capacitacion obj ) throws  Exception { 
  boolean band= false;
- String sql = "update tipo_capacitacion set codigo=?,nombre=? where codigo=?  ";
+ String sql = "update public.tipo_capacitacion set codigo=?,nombre=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -50,7 +50,7 @@ throw ex;}
 
  public static boolean eliminar(Tipo_capacitacion obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from tipo_capacitacion where codigo=? ";
+ String sql = "delete from public.tipo_capacitacion where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -71,7 +71,7 @@ throw ex;}
  public static Tipo_capacitacion obtener (int pcodigo) throws Exception  {  
  Tipo_capacitacion miTipo_capacitacion = null;
 try{ 
- String sql = "select codigo,nombre from tipo_capacitacion where   codigo=? ";
+ String sql = "select codigo,nombre from public.tipo_capacitacion where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -89,7 +89,7 @@ return  miTipo_capacitacion;
  public static ArrayList<Tipo_capacitacion> obtener () throws Exception  {  
  ArrayList<Tipo_capacitacion> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,nombre from tipo_capacitacion; ";
+ String sql = "select codigo,nombre from public.tipo_capacitacion; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarTipo_capacitacions(rs);
 

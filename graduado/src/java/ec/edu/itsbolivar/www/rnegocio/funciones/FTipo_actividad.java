@@ -7,7 +7,7 @@ public class FTipo_actividad{
 
  public static boolean insertar(Tipo_actividad obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into tipo_actividad values (?,?)";
+ String sql = "insert into public.tipo_actividad values (?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -28,7 +28,7 @@ throw ex;}
 
  public static boolean modificar(Tipo_actividad obj ) throws  Exception { 
  boolean band= false;
- String sql = "update tipo_actividad set codigo=?,nombre=? where codigo=?  ";
+ String sql = "update public.tipo_actividad set codigo=?,nombre=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -50,7 +50,7 @@ throw ex;}
 
  public static boolean eliminar(Tipo_actividad obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from tipo_actividad where codigo=? ";
+ String sql = "delete from public.tipo_actividad where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -71,7 +71,7 @@ throw ex;}
  public static Tipo_actividad obtener (int pcodigo) throws Exception  {  
  Tipo_actividad miTipo_actividad = null;
 try{ 
- String sql = "select codigo,nombre from tipo_actividad where   codigo=? ";
+ String sql = "select codigo,nombre from public.tipo_actividad where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -89,7 +89,7 @@ return  miTipo_actividad;
  public static ArrayList<Tipo_actividad> obtener () throws Exception  {  
  ArrayList<Tipo_actividad> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,nombre from tipo_actividad; ";
+ String sql = "select codigo,nombre from public.tipo_actividad; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarTipo_actividads(rs);
 

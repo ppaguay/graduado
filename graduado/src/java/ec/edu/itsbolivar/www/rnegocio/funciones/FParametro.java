@@ -7,8 +7,8 @@ public class FParametro{
 
  public static boolean insertar(Parametro obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into parametro values (?,?,?)";
-ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar= new ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro>();
+ String sql = "insert into public.parametro values (?,?,?)";
+ArrayList< ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar= new ArrayList<>();
 
 //campos con referencias
 
@@ -29,8 +29,8 @@ throw ex;}
 
  public static boolean modificar(Parametro obj ) throws  Exception { 
  boolean band= false;
- String sql = "update parametro set codigo=?,valor=?,descripcion=? where codigo=?  ";
-ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar= new ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro>();
+ String sql = "update public.parametro set codigo=?,valor=?,descripcion=? where codigo=?  ";
+ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar= new ArrayList<>();
 
 //campos con referencias
 
@@ -52,7 +52,7 @@ throw ex;}
 
  public static boolean eliminar(Parametro obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from parametro where codigo=? ";
+ String sql = "delete from public.parametro where codigo=? ";
 ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar= new ArrayList<>();
 
 //campos con referencias
@@ -73,7 +73,7 @@ throw ex;}
  public static Parametro obtener (int pcodigo) throws Exception  {  
  Parametro miParametro = null;
 try{ 
- String sql = "select codigo,valor,descripcion from parametro where   codigo=? ";
+ String sql = "select codigo,valor,descripcion from public.parametro where   codigo=? ";
 ArrayList<ec.edu.itsbolivar.www.accesodatos.Parametro> lstpar = new ArrayList<>();
  lstpar.add(new ec.edu.itsbolivar.www.accesodatos.Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -91,7 +91,7 @@ return  miParametro;
  public static ArrayList<Parametro> obtener () throws Exception  {  
  ArrayList<Parametro> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,valor,descripcion from parametro; ";
+ String sql = "select codigo,valor,descripcion from public.parametro; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarParametros(rs);
 
@@ -102,8 +102,8 @@ return  lst;
 
 
  private static ArrayList<Parametro> llenarParametros(ConjuntoResultado cr)  throws  Exception { 
- ArrayList<Parametro> lst = new ArrayList<>();
-Parametro obj=null;
+ ArrayList<Parametro> lst = new ArrayList<Parametro>();
+ Parametro obj=null;
 try { 
   while(cr.next()){
  obj = new Parametro();

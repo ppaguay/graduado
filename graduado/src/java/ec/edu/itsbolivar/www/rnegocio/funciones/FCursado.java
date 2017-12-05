@@ -7,7 +7,7 @@ public class FCursado{
 
  public static boolean insertar(Cursado obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into cursado values (?,?)";
+ String sql = "insert into public.cursado values (?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -30,7 +30,7 @@ throw ex;}
 
  public static boolean modificar(Cursado obj ) throws  Exception { 
  boolean band= false;
- String sql = "update cursado set cod_graduado=?,cod_capacitacion=? where cod_graduado=? and cod_capacitacion=?  ";
+ String sql = "update public.cursado set cod_graduado=?,cod_capacitacion=? where cod_graduado=? and cod_capacitacion=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -57,7 +57,7 @@ throw ex;}
 
  public static boolean eliminar(Cursado obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from cursado where cod_graduado=? and cod_capacitacion=? ";
+ String sql = "delete from public.cursado where cod_graduado=? and cod_capacitacion=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -81,7 +81,7 @@ throw ex;}
  public static Cursado obtener (int pcod_graduado,int pcod_capacitacion) throws Exception  {  
  Cursado miCursado = null;
 try{ 
- String sql = "select cod_graduado,cod_capacitacion from cursado where   cod_graduado=? and cod_capacitacion=? ";
+ String sql = "select cod_graduado,cod_capacitacion from public.cursado where   cod_graduado=? and cod_capacitacion=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcod_graduado));
  lstpar.add(new Parametro(2,pcod_capacitacion));
@@ -100,7 +100,7 @@ return  miCursado;
  public static ArrayList<Cursado> obtener () throws Exception  {  
  ArrayList<Cursado> lst=new ArrayList<>();
 try{ 
- String sql = "select cod_graduado,cod_capacitacion from cursado; ";
+ String sql = "select cod_graduado,cod_capacitacion from public.cursado; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarCursados(rs);
 

@@ -7,7 +7,7 @@ public class FOferta_laboral{
 
  public static boolean insertar(Oferta_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into oferta_laboral values (?,?,?,?,?,?)";
+ String sql = "insert into public.oferta_laboral values (?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -35,7 +35,7 @@ throw ex;}
 
  public static boolean modificar(Oferta_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "update oferta_laboral set codigo=?,cod_empresa=?,cod_tipocargo=?,cod_tiposueldo=?,caract_cargo=?,experiencia=? where codigo=?  ";
+ String sql = "update public.oferta_laboral set codigo=?,cod_empresa=?,cod_tipocargo=?,cod_tiposueldo=?,caract_cargo=?,experiencia=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -64,7 +64,7 @@ throw ex;}
 
  public static boolean eliminar(Oferta_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from oferta_laboral where codigo=? ";
+ String sql = "delete from public.oferta_laboral where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -85,7 +85,7 @@ throw ex;}
  public static Oferta_laboral obtener (int pcodigo) throws Exception  {  
  Oferta_laboral miOferta_laboral = null;
 try{ 
- String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from oferta_laboral where   codigo=? ";
+ String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from public.oferta_laboral where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -103,7 +103,7 @@ return  miOferta_laboral;
  public static ArrayList<Oferta_laboral> obtener () throws Exception  {  
  ArrayList<Oferta_laboral> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from oferta_laboral; ";
+ String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from public.oferta_laboral; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarOferta_laborals(rs);
 

@@ -7,7 +7,7 @@ public class FAplicar_oferta{
 
  public static boolean insertar(Aplicar_oferta obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into aplicar_oferta values (?,?,?,?,?)";
+ String sql = "insert into public.aplicar_oferta values (?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -33,7 +33,7 @@ throw ex;}
 
  public static boolean modificar(Aplicar_oferta obj ) throws  Exception { 
  boolean band= false;
- String sql = "update aplicar_oferta set cod_graduado=?,cod_ofertalaboral=?,fecha_aplica=?,contrato=?,fecha_inicio=? where cod_graduado=? and cod_ofertalaboral=?  ";
+ String sql = "update public.aplicar_oferta set cod_graduado=?,cod_ofertalaboral=?,fecha_aplica=?,contrato=?,fecha_inicio=? where cod_graduado=? and cod_ofertalaboral=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -63,7 +63,7 @@ throw ex;}
 
  public static boolean eliminar(Aplicar_oferta obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from aplicar_oferta where cod_graduado=? and cod_ofertalaboral=? ";
+ String sql = "delete from public.aplicar_oferta where cod_graduado=? and cod_ofertalaboral=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -87,7 +87,7 @@ throw ex;}
  public static Aplicar_oferta obtener (int pcod_graduado,int pcod_ofertalaboral) throws Exception  {  
  Aplicar_oferta miAplicar_oferta = null;
 try{ 
- String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from aplicar_oferta where   cod_graduado=? and cod_ofertalaboral=? ";
+ String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from public.aplicar_oferta where   cod_graduado=? and cod_ofertalaboral=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcod_graduado));
  lstpar.add(new Parametro(2,pcod_ofertalaboral));
@@ -106,7 +106,7 @@ return  miAplicar_oferta;
  public static ArrayList<Aplicar_oferta> obtener () throws Exception  {  
  ArrayList<Aplicar_oferta> lst=new ArrayList<>();
 try{ 
- String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from aplicar_oferta; ";
+ String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from public.aplicar_oferta; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarAplicar_ofertas(rs);
 
