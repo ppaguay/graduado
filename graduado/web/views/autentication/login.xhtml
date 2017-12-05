@@ -18,14 +18,14 @@
                             <p class="text-muted">Iniciar sesión en su cuenta</p>
                             <div class="input-group mb-3">
 
-                                <b:inputText value="#{authentication.user}" placeholder="Username" required="true" label="Username" >
+                                <b:inputText value="#{authenticationController.user}" placeholder="Username" required="true" label="Username" >
                                     <f:facet name="prepend" class="icono-input" >
                                         <b:icon name="user" />
                                     </f:facet>
                                 </b:inputText>
                             </div>
                             <div class="input-group mb-4">
-                                <b:inputText value="#{authentication.password}" type="password" placeholder="Password" required="true" label="Password"  >
+                                <b:inputText value="#{authenticationController.password}" type="password" placeholder="Password" required="true" label="Password"  >
                                     <f:facet name="prepend">
                                         <b:iconAwesome name="key" />
                                     </f:facet>
@@ -34,7 +34,7 @@
                             <b:messages class="messages-login" id="messages"></b:messages>
                             <div class="row">
                                 <div class="col-6">
-                                    <b:commandButton  update="@form" look="primary" class="px-4" value="Login" action="#{authentication.logear()}"></b:commandButton>
+                                    <b:commandButton  update="@form" look="primary" class="px-4" value="Login" action="#{authenticationController.logear()}"></b:commandButton>
 
                                 </div>
                                 <div class="col-6 text-right">
@@ -82,7 +82,7 @@
                 <b:modal  class="modalAdd">
                     <h3 class="text-muted center_content-text">Registro</h3>
                     <h:form id="frmadd" >
-                        <h:form rendered="#{authentication.correct==false}">
+                        <h:form rendered="#{authenticationController.correct==false}">
                             <div class="card mx-4 form-add" >
                                 <div class="card-body p-4">
 
@@ -90,7 +90,7 @@
 
 
                                     <div class="input-group mb-3">
-                                        <b:inputText  value="#{authentication.user}" placeholder="Usuario" required="true" label="Usuario"  >
+                                        <b:inputText  value="#{authenticationController.user}" placeholder="Usuario" required="true" label="Usuario"  >
                                             <f:facet name="prepend" class="icono-input" >
                                                 <b:icon name="user" />
                                             </f:facet>
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <b:inputText  value="#{authentication.user}" placeholder="Contraseña" required="true" label="Contraseña" >
+                                        <b:inputText  value="#{authenticationController.user}" placeholder="Contraseña" required="true" label="Contraseña" >
                                             <f:facet name="prepend" class="icono-input" >
                                                 <b:iconAwesome name="fa-key" />
                                             </f:facet>
@@ -106,20 +106,20 @@
                                     </div>
 
                                     <div class="input-group mb-4">
-                                        <b:inputText  value="#{authentication.user}" placeholder="Email" required="true" label="Email"  >
+                                        <b:inputText  value="#{authenticationController.user}" placeholder="Email" required="true" label="Email"  >
                                             <f:facet name="prepend" class="icono-input" >
                                                 <strong>@</strong>
                                             </f:facet>
                                         </b:inputText>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <b:selectOneMenu  value="#{authentication.user}" class="select-app"  required="true" label="Genero" >
+                                        <b:selectOneMenu  value="#{authenticationController.user}" class="select-app"  required="true" label="Genero" >
                                             <f:selectItem itemLabel="Masculino" itemValue="1" />
                                             <f:selectItem itemLabel="Femenino" itemValue="2" />
 
                                         </b:selectOneMenu>
                                     </div>
-                                    <b:commandButton action="#{authentication.register()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear Cuenta" update="@form messages frmadd" ></b:commandButton>
+                                    <b:commandButton action="#{authenticationController.register()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear Cuenta" update="@form messages frmadd" ></b:commandButton>
 
                                 </div>
 
@@ -130,7 +130,7 @@
                             </div>
                         </h:form>
 
-                        <h:form rendered="#{authentication.correct==true}">
+                        <h:form rendered="#{authenticationController.correct==true}">
                            
 
 

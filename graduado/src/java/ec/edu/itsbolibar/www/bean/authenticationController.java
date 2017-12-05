@@ -17,7 +17,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @RequestScoped
-public class authentication {
+public class authenticationController {
 
     String user;
     String password;
@@ -26,7 +26,7 @@ public class authentication {
     /**
      * Creates a new instance of authentication
      */
-    public authentication() {
+    public authenticationController() {
     }
 // FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user_res);
 
