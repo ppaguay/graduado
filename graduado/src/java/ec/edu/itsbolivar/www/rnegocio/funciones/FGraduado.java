@@ -7,7 +7,7 @@ public class FGraduado{
 
  public static boolean insertar(Graduado obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into graduado values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+ String sql = "insert into graduado values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -30,6 +30,7 @@ lstpar.add(new Parametro(3,obj.getTipo_licencia().getCodigo()));
  lstpar.add(new Parametro(11,obj.getCelular2()));
  lstpar.add(new Parametro(12,obj.getEmail()));
  lstpar.add(new Parametro(13,obj.getFacebook()));
+ lstpar.add(new Parametro(14,obj.getClave()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
@@ -41,7 +42,7 @@ throw ex;}
 
  public static boolean modificar(Graduado obj ) throws  Exception { 
  boolean band= false;
- String sql = "update graduado set codigo=?,cod_estadocivil=?,cod_tipolicencia=?,nombre=?,ci=?,fecha_nac=?,ciudad_actual=?,direccion=?,telefono=?,celular1=?,celular2=?,email=?,facebook=? where codigo=?  ";
+ String sql = "update graduado set codigo=?,cod_estadocivil=?,cod_tipolicencia=?,nombre=?,ci=?,fecha_nac=?,ciudad_actual=?,direccion=?,telefono=?,celular1=?,celular2=?,email=?,facebook=?,clave=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -54,7 +55,7 @@ lstpar.add(new Parametro(3,obj.getTipo_licencia().getCodigo()));
 //campos sin referencias
 
  lstpar.add(new Parametro(1,obj.getCodigo()));
- lstpar.add(new Parametro(14,obj.getCodigo()));
+ lstpar.add(new Parametro(15,obj.getCodigo()));
  lstpar.add(new Parametro(4,obj.getNombre()));
  lstpar.add(new Parametro(5,obj.getCi()));
  lstpar.add(new Parametro(6,obj.getFecha_nac()));
@@ -65,6 +66,7 @@ lstpar.add(new Parametro(3,obj.getTipo_licencia().getCodigo()));
  lstpar.add(new Parametro(11,obj.getCelular2()));
  lstpar.add(new Parametro(12,obj.getEmail()));
  lstpar.add(new Parametro(13,obj.getFacebook()));
+ lstpar.add(new Parametro(14,obj.getClave()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
@@ -97,7 +99,7 @@ throw ex;}
  public static Graduado obtener (int pcodigo) throws Exception  {  
  Graduado miGraduado = null;
 try{ 
- String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook from graduado where   codigo=? ";
+ String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -115,7 +117,7 @@ return  miGraduado;
  public static ArrayList<Graduado> obtener () throws Exception  {  
  ArrayList<Graduado> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook from graduado; ";
+ String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarGraduados(rs);
 
@@ -152,6 +154,7 @@ obj.setCelular1(cr.getString(10));
 obj.setCelular2(cr.getString(11));
 obj.setEmail(cr.getString(12));
 obj.setFacebook(cr.getString(13));
+obj.setClave(cr.getString(14));
 lst.add(obj);
 
  }

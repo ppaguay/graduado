@@ -26,6 +26,10 @@
         <pattern value="/admin"/>
         <view-id value="/app/views/administrador/admin.xhtml" />
     </url-mapping>   
+    <url-mapping id="empresas">
+        <pattern value="/empresas"/>
+        <view-id value="/app/views/administrador/empresas.xhtml" />
+    </url-mapping>   
     <!--fin admin-->
     <!--empresa-->
     <url-mapping id="adminEmpresa">

@@ -35,15 +35,36 @@ and open the template in the editor.
 }
 
 .btn-session{
-        background: none!important;
+    background: none!important;
     border: none!important;
 }
 .menu-title{
-       
+
 }
 .menu-title i{
     float: left!important;
 }
 .fa-icons{
-        min-width: 1.4em;
+    min-width: 1.4em;
+}
+
+.frm-all{
+
+}
+.header-content{
+/*    background: white;*/
+    text-align: center;
+}
+.title-content{
+    font-size: 2em;
+}
+.btn-redondo{
+    border-radius: 50%!important;
+
+}
+.content-left{
+    float: left;
+}
+.color-title{
+    color: #a0a0a0;
 }

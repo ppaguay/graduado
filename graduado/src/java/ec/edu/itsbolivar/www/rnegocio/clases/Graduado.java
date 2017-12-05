@@ -1,81 +1,131 @@
 package ec.edu.itsbolivar.www.rnegocio.clases;
-public class Graduado { 
-	private  int codigo; 
-	private  Estado_civil estado_civil; 
-	private  Tipo_licencia tipo_licencia; 
-	private  String nombre; 
-	private  String ci; 
-	private  long fecha_nac; 
-	private  String ciudad_actual; 
-	private  String direccion; 
-	private  String telefono; 
-	private  String celular1; 
-	private  String celular2; 
-	private  String email; 
-	private  String facebook; 
 
- public int getCodigo() {
-return codigo;}
+public class Graduado {
 
-public void setCodigo(int codigo) {this.codigo= codigo;}
+    private int codigo;
+    private Estado_civil estado_civil;
+    private Tipo_licencia tipo_licencia;
+    private String nombre;
+    private String ci;
+    private long fecha_nac;
+    private String ciudad_actual;
+    private String direccion;
+    private String telefono;
+    private String celular1;
+    private String celular2;
+    private String email;
+    private String facebook;
+    private String clave;
 
- public Estado_civil getEstado_civil() {
-return estado_civil;}
+    public int getCodigo() {
+        return codigo;
+    }
 
-public void setEstado_civil(Estado_civil estado_civil) {this.estado_civil= estado_civil;}
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
- public Tipo_licencia getTipo_licencia() {
-return tipo_licencia;}
+    public Estado_civil getEstado_civil() {
+        return estado_civil;
+    }
 
-public void setTipo_licencia(Tipo_licencia tipo_licencia) {this.tipo_licencia= tipo_licencia;}
+    public String getClave() {
+        return clave;
+    }
 
- public String getNombre() {
-return nombre;}
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
 
-public void setNombre(String nombre) {this.nombre= nombre;}
+    public void setEstado_civil(Estado_civil estado_civil) {
+        this.estado_civil = estado_civil;
+    }
 
- public String getCi() {
-return ci;}
+    public Tipo_licencia getTipo_licencia() {
+        return tipo_licencia;
+    }
 
-public void setCi(String ci) {this.ci= ci;}
+    public void setTipo_licencia(Tipo_licencia tipo_licencia) {
+        this.tipo_licencia = tipo_licencia;
+    }
 
- public long getFecha_nac() {
-return fecha_nac;}
+    public String getNombre() {
+        return nombre;
+    }
 
-public void setFecha_nac(long fecha_nac) {this.fecha_nac= fecha_nac;}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
- public String getCiudad_actual() {
-return ciudad_actual;}
+    public String getCi() {
+        return ci;
+    }
 
-public void setCiudad_actual(String ciudad_actual) {this.ciudad_actual= ciudad_actual;}
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
 
- public String getDireccion() {
-return direccion;}
+    public long getFecha_nac() {
+        return fecha_nac;
+    }
 
-public void setDireccion(String direccion) {this.direccion= direccion;}
+    public void setFecha_nac(long fecha_nac) {
+        this.fecha_nac = fecha_nac;
+    }
 
- public String getTelefono() {
-return telefono;}
+    public String getCiudad_actual() {
+        return ciudad_actual;
+    }
 
-public void setTelefono(String telefono) {this.telefono= telefono;}
+    public void setCiudad_actual(String ciudad_actual) {
+        this.ciudad_actual = ciudad_actual;
+    }
 
- public String getCelular1() {
-return celular1;}
+    public String getDireccion() {
+        return direccion;
+    }
 
-public void setCelular1(String celular1) {this.celular1= celular1;}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
- public String getCelular2() {
-return celular2;}
+    public String getTelefono() {
+        return telefono;
+    }
 
-public void setCelular2(String celular2) {this.celular2= celular2;}
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
- public String getEmail() {
-return email;}
+    public String getCelular1() {
+        return celular1;
+    }
 
-public void setEmail(String email) {this.email= email;}
+    public void setCelular1(String celular1) {
+        this.celular1 = celular1;
+    }
 
- public String getFacebook() {
-return facebook;}
+    public String getCelular2() {
+        return celular2;
+    }
 
-public void setFacebook(String facebook) {this.facebook= facebook;}
+    public void setCelular2(String celular2) {
+        this.celular2 = celular2;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
 }

@@ -1,45 +1,77 @@
 package ec.edu.itsbolivar.www.rnegocio.clases;
-public class Empresa { 
-	private  int codigo; 
-	private  Tipo_actividad tipo_actividad; 
-	private  String nombre; 
-	private  String direccion; 
-	private  String telefono; 
-	private  String usuario; 
-	private  String pertenece; 
 
- public int getCodigo() {
-return codigo;}
+public class Empresa {
 
-public void setCodigo(int codigo) {this.codigo= codigo;}
+    private int codigo;
+    private Tipo_actividad tipo_actividad;
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String usuario;
+    private String pertenece;
+    private String clave;
 
- public Tipo_actividad getTipo_actividad() {
-return tipo_actividad;}
+    public int getCodigo() {
+        return codigo;
+    }
 
-public void setTipo_actividad(Tipo_actividad tipo_actividad) {this.tipo_actividad= tipo_actividad;}
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 
- public String getNombre() {
-return nombre;}
+    public Tipo_actividad getTipo_actividad() {
+        return tipo_actividad;
+    }
 
-public void setNombre(String nombre) {this.nombre= nombre;}
+    public void setTipo_actividad(Tipo_actividad tipo_actividad) {
+        this.tipo_actividad = tipo_actividad;
+    }
 
- public String getDireccion() {
-return direccion;}
+    public String getNombre() {
+        return nombre;
+    }
 
-public void setDireccion(String direccion) {this.direccion= direccion;}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
- public String getTelefono() {
-return telefono;}
+    public String getDireccion() {
+        return direccion;
+    }
 
-public void setTelefono(String telefono) {this.telefono= telefono;}
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
- public String getUsuario() {
-return usuario;}
+    public String getTelefono() {
+        return telefono;
+    }
 
-public void setUsuario(String usuario) {this.usuario= usuario;}
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
- public String getPertenece() {
-return pertenece;}
+    public String getUsuario() {
+        return usuario;
+    }
 
-public void setPertenece(String pertenece) {this.pertenece= pertenece;}
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPertenece() {
+        return pertenece;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    public void setPertenece(String pertenece) {
+        this.pertenece = pertenece;
+    }
 }

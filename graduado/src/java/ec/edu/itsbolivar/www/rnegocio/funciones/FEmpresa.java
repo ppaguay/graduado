@@ -7,7 +7,7 @@ public class FEmpresa{
 
  public static boolean insertar(Empresa obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into empresa values (?,?,?,?,?,?,?)";
+ String sql = "insert into empresa values (?,?,?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -23,6 +23,7 @@ lstpar.add(new Parametro(2,obj.getTipo_actividad().getCodigo()));
  lstpar.add(new Parametro(5,obj.getTelefono()));
  lstpar.add(new Parametro(6,obj.getUsuario()));
  lstpar.add(new Parametro(7,obj.getPertenece()));
+ lstpar.add(new Parametro(8,obj.getClave()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
@@ -34,7 +35,7 @@ throw ex;}
 
  public static boolean modificar(Empresa obj ) throws  Exception { 
  boolean band= false;
- String sql = "update empresa set codigo=?,cod_tipoactividad=?,nombre=?,direccion=?,telefono=?,usuario=?,pertenece=? where codigo=?  ";
+ String sql = "update empresa set codigo=?,cod_tipoactividad=?,nombre=?,direccion=?,telefono=?,usuario=?,pertenece=?,clave=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -45,12 +46,13 @@ lstpar.add(new Parametro(2,obj.getTipo_actividad().getCodigo()));
 //campos sin referencias
 
  lstpar.add(new Parametro(1,obj.getCodigo()));
- lstpar.add(new Parametro(8,obj.getCodigo()));
+ lstpar.add(new Parametro(9,obj.getCodigo()));
  lstpar.add(new Parametro(3,obj.getNombre()));
  lstpar.add(new Parametro(4,obj.getDireccion()));
  lstpar.add(new Parametro(5,obj.getTelefono()));
  lstpar.add(new Parametro(6,obj.getUsuario()));
  lstpar.add(new Parametro(7,obj.getPertenece()));
+ lstpar.add(new Parametro(8,obj.getClave()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
@@ -83,7 +85,7 @@ throw ex;}
  public static Empresa obtener (int pcodigo) throws Exception  {  
  Empresa miEmpresa = null;
 try{ 
- String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece from empresa where   codigo=? ";
+ String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from empresa where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -101,7 +103,7 @@ return  miEmpresa;
  public static ArrayList<Empresa> obtener () throws Exception  {  
  ArrayList<Empresa> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece from empresa; ";
+ String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from empresa; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarEmpresas(rs);
 
@@ -131,6 +133,7 @@ obj.setDireccion(cr.getString(4));
 obj.setTelefono(cr.getString(5));
 obj.setUsuario(cr.getString(6));
 obj.setPertenece(cr.getString(7));
+obj.setClave(cr.getString(8));
 lst.add(obj);
 
  }

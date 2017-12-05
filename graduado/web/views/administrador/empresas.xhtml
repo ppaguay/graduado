@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../templateAdmin.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <b:button iconAwesome="fa-plus-circle" look="btn btn-success" onclick="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                    <samp class="text-muted center_content-text title-content  ">Empresas</samp>
+                </div>
+                <h:form class="frm-all">
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Empresa</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{empresasController.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nueva Empresa</p>
+
+
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{empresasController.empresa.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:icon name="user" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{empresasController.empresa.direccion}" placeholder="Dirección" required="true" label="Dirección" >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-key" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{empresasController.empresa.telefono}" placeholder="Telefono" required="true" label="Telefono"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <strong>@</strong>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{empresasController.empresa.usuario}" placeholder="Usuario" required="true" label="Usuario"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <strong>@</strong>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{empresasController.empresa.pertenece}" placeholder="Pertenece" required="true" label="Pertenece"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <strong>@</strong>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+                                     <div class="input-group mb-3">
+                                         <b:inputText  value="#{empresasController.empresa.clave}" placeholder="Dirección" required="true" label="Dirección" >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-key" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu  value="#{authentication.user}" class="select-app"  required="true" label="Genero" >
+                                            <f:selectItem itemLabel="Masculino" itemValue="1" />
+                                            <f:selectItem itemLabel="Femenino" itemValue="2" />
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    
+                                    <b:commandButton action="#{empresasController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear Cuenta" update="@form messages frmadd" ></b:commandButton>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{empresasController.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="empresas" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
