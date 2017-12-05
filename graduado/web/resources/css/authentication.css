@@ -38,3 +38,9 @@ and open the template in the editor.
         background: none!important;
     border: none!important;
 }
+.menu-title{
+       
+}
+.menu-title i{
+    float: left!important;
+}

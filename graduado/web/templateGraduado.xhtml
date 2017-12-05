@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta name="description" content="App Graduados"/>
+
+        <h:outputStylesheet name="lib/bootstrap/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="css/styleadmin.css"/>
+        <h:outputStylesheet name="css/authentication.css"/>
+        <h:outputStylesheet name="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="lib/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"/>
+
+        <h:outputScript name="lib/popper.min.js" />
+        <h:outputScript name="lib/jquery-3.2.1.slim.min.js" />
+        <h:outputScript name="lib/bootstrap/js/bootstrap.js" />
+        <h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js" />
+        <h:outputScript name="lib/chart.js/dist/Chart.min.js" />
+        <h:outputScript name="js/off-canvas.js" />
+        <h:outputScript name="js/hoverable-collapse.js" />
+        <h:outputScript name="js/misc.js" />
+        <h:outputScript name="js/tether.min.js" />
+
+        <title>Admin</title>
+    </h:head>
+
+    <h:body>
+
+        <div class=" container-scroller">
+            <!--Navbar-->
+            <nav style="border: none; position: fixed" class="navbar bg-primary-gradient  col-12 p-0 fixed-top navbar-inverse d-flex flex-row">
+                <div class="bg-white text-center navbar-brand-wrapper">
+                    <a class="navbar-brand brand-logo" href="#">Sistema Graduados</a>
+                    <a class="navbar-brand brand-logo-mini" href="#">SG</a>
+                </div>
+                <div class="navbar-menu-wrapper d-flex align-items-center">
+                   
+                    <form class="form-inline mt-2 mt-md-0 hidden-md-down">
+                        <input class="form-control mr-sm-2 search" type="text" placeholder="Search"/>
+                    </form>
+                    <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
+                        <li class="nav-item">
+                            <b:form id="frm_session">
+                                <b:commandButton action="#{sessionController.closeSession()}" update="@form" onclick="$('.modalSession').modal()"  class="nav-link profile-pic btn-session" ><i class="fa fa-sign-out" aria-hidden="true"></i></b:commandButton>
+                            </b:form>
+
+                        </li>
+
+                    </ul>
+
+                    <button class="navbar-toggler navbar-toggler-right hidden-lg-up align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+            <!--End navbar-->
+            <div class="container-fluid">
+                <div class="row row-offcanvas row-offcanvas-right">
+                    <nav class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
+                        <div class="user-info">
+                            <img src="img/user.png" alt=""/>
+                            <p class="name">Carlos Perez</p>
+                            <p class="designation">Graduado</p>
+                            <span class="online"></span>
+                        </div>
+                        <ul class="nav" style="display: block;">
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin">
+                                    <!-- <i class="fa fa-dashboard"></i> -->
+                                    <img src="img/icons/1.png" alt=""/>
+                                    <span class="menu-title">Home</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item active">
+                                <a class="nav-link" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <!-- <i class="fa fa-address-book"></i> -->
+                                    <img src="img/icons/9.png" alt=""/>
+                                    <span class="menu-title">otros<i class="fa fa-sort-down"></i></span>
+                                </a>
+                                <div class="collapse" id="collapseExample">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">
+                                                otros
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <!-- <i class="fa fa-bold"></i> -->
+                                    <img src="img/icons/10.png" alt=""/>
+                                    <span class="menu-title">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- SIDEBAR ENDS -->
+
+
+                    <div class="content-wrapper">
+                        <!--contenido-->
+                        <ui:insert name="content">Content</ui:insert>
+                    </div>
+                    <footer class="footer">
+                        <div class="container-fluid clearfix">
+                            <span class="float-right">
+                                <a href="#">Seguimiento Graduados</a> &copy; 2017
+                            </span>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+
+        <ui:insert name="modal">modal</ui:insert>
+
+
+    </h:body>
+
+</html>
+

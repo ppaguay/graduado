@@ -27,6 +27,19 @@
         <view-id value="/app/views/administrador/admin.xhtml" />
     </url-mapping>   
     <!--fin admin-->
+    <!--empresa-->
+    <url-mapping id="adminEmpresa">
+        <pattern value="/adminEmpresa"/>
+        <view-id value="/app/views/empresas/adminEmpresa.xhtml" />
+    </url-mapping>  
+    <!--fin empresa-->
+    <!--fin graduado-->
+    <url-mapping id="adminGraduado">
+        <pattern value="/adminGraduado"/>
+        <view-id value="/app/views/graduados/adminGraduado.xhtml" />
+    </url-mapping>  
+    <!--fin graduado-->
+    
     <!--
     <url-mapping id="ejecutivoCuestionarioUsuarioShow">
         <pattern value="/ejecutivoCuestionarioUsuarioShow/#{id_cuestionario}/#{id_usuario}/#{id_encuesta}"/>
