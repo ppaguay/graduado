@@ -1,0 +1,32 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+    <!--autentication fin y error-->
+    <url-mapping id="login">
+        <pattern value="/login"/>
+        <view-id value="/app/views/autentication/login.xhtml" />
+    </url-mapping>
+ 
+    <url-mapping id="404">
+        <pattern value="/404"/>
+        <view-id value="/app/views/error/404.xhtml" />
+    </url-mapping>
+    <url-mapping id="500">
+        <pattern value="/500"/>
+        <view-id value="/app/views/error/500.xhtml" />
+    </url-mapping>
+    <!--fin autentication fin y error-->
+    <!--admin-->
+    <url-mapping id="admin">
+        <pattern value="/admin"/>
+        <view-id value="/app/views/administrador/admin.xhtml" />
+    </url-mapping>   
+    <!--fin admin-->
+    <!--
+    <url-mapping id="ejecutivoCuestionarioUsuarioShow">
+        <pattern value="/ejecutivoCuestionarioUsuarioShow/#{id_cuestionario}/#{id_usuario}/#{id_encuesta}"/>
+        <view-id value="/app/view/ejecutivoCuestionarioUsuarioShow.xhtml" />
+    </url-mapping>-->
+
+</pretty-config>
