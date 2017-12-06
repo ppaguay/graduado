@@ -41,6 +41,8 @@ public class authentication {
 
     public void logear() throws Exception {
         Personal userLog = new Personal();
+        Empresa empresaLog= new Empresa();
+        Graduado graduadoLog= new Graduado();
         Tipo_personal tipo_personal = new Tipo_personal();//1 admin /2graduado //3 empresa
         if (tipo_usuario == 1) {//administrador
             Personal personal = new Personal();
@@ -78,6 +80,7 @@ public class authentication {
             for (Graduado item : lst) {
                 if (item.getClave().equals(g.getClave()) && item.getCi().equals(g.getCi())) {
                     correct = true;
+                    graduadoLog=item;
                     userLog.setCodigo(item.getCodigo());
                 }
             }
@@ -88,6 +91,7 @@ public class authentication {
                 tipo_personal.setCodigo(2);
                 userLog.setTipo_personal(tipo_personal);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userLog);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("graduado", graduadoLog);
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("adminGraduado");
             } else {
@@ -104,6 +108,7 @@ public class authentication {
             for (Empresa item : lst) {
                 if (item.getClave().equals(empresa.getClave()) && item.getUsuario().equals(empresa.getUsuario())) {
                     correct = true;
+                    empresaLog=item;
                     userLog.setCodigo(item.getCodigo());
                 }
             }
@@ -113,6 +118,7 @@ public class authentication {
                 tipo_personal.setCodigo(3);
                 userLog.setTipo_personal(tipo_personal);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userLog);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("empresa", empresaLog);
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("adminEmpresa");
             } else {

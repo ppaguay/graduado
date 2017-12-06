@@ -1,5 +1,8 @@
 package ec.edu.itsbolivar.www.rnegocio.clases;
-public class Tipo_actividad { 
+
+import java.io.Serializable;
+
+public class Tipo_actividad implements Serializable{ 
 	private  int codigo; 
 	private  String nombre; 
 

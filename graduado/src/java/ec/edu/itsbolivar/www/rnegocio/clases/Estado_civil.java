@@ -1,5 +1,8 @@
 package ec.edu.itsbolivar.www.rnegocio.clases;
-public class Estado_civil { 
+
+import java.io.Serializable;
+
+public class Estado_civil implements Serializable{ 
 	private  int codigo; 
 	private  String nombre; 
 

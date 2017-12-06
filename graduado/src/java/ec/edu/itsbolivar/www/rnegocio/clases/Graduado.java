@@ -1,5 +1,8 @@
 package ec.edu.itsbolivar.www.rnegocio.clases;
-public class Graduado { 
+
+import java.io.Serializable;
+
+public class Graduado implements Serializable { 
 	private  int codigo; 
 	private  Estado_civil estado_civil; 
 	private  Tipo_licencia tipo_licencia; 
