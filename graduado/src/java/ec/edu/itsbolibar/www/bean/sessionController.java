@@ -104,7 +104,6 @@ public class sessionController {
             Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 
             if (personal != null) {
-
                 if (personal.getTipo_personal().getCodigo() == 3) {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("adminEmpresa");
                 }
