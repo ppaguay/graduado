@@ -1,18 +1,144 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
-                content
+                <div class="header-content">
+                    <h:form >
+
+                        <b:commandButton update="frmadd" action="#{graduadoAplicarOferta.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" oncomplete="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                        <samp class="text-muted center_content-text title-content  ">Aplicar Oferta</samp>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:dataTable searching="true" value="#{graduadoAplicarOferta.lst_aplica_oferta}"
+                                 var="car">
+
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Empresa
+                            </f:facet>
+                            #{car.oferta_laboral.empresa.nombre}   
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Experiencia
+                            </f:facet>
+                            #{car.oferta_laboral.experiencia}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Cargo
+                            </f:facet>
+                            #{car.oferta_laboral.tipo_cargo.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fechas
+                            </f:facet>
+                            aplica: #{graduadoAplicarOferta.convertMillisecondsToString(car.fecha_aplica)}    inicio:   #{graduadoAplicarOferta.convertMillisecondsToString(car.fecha_inicio)} 
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Ver
+                            </f:facet>
+                            <b:commandButton value="Ver" oncomplete="$('.modalAdd').modal()"  action="#{graduadoAplicarOferta.ver(car)}" update="frmadd" ></b:commandButton>
+                            <b:commandButton value="Eliminar"   action="#{graduadoAplicarOferta.eliminar(car)}" update="frmadd all:frmdatos" ></b:commandButton>
+
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
             </ui:define>
 
             <ui:define name="modal">
-                modal
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Aplicar Oferta</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{graduadoAplicarOferta.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Aplicar a Nueva  Oferta</p>
+                                    <b:inputText  value="#{graduadoAplicarOferta.fecha_aplica}" placeholder="Fecha" required="true" label="Fecha Aplica" type="date"  >
+
+                                    </b:inputText>
+                                    <b:inputText  value="#{graduadoAplicarOferta.fecha_inicio}" placeholder="Fecha" required="true" label="Fecha Inicio" type="date"  >
+
+                                    </b:inputText>
+
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{graduadoAplicarOferta.item.contrato}" placeholder="Dirección" required="true" label="Contrato" maxlength="2"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-building"/>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+
+
+
+                                    <c:choose>
+                                        <c:when test="#{graduadoAplicarOferta.edit==false}">
+                                            <div class="input-group mb-3">
+                                                <b:selectOneMenu  disabled ="#{graduadoAplicarOferta.edit}"  value="#{graduadoAplicarOferta.item.oferta_laboral}" class="select-app"  required="true" label="Oferta Laboral" >
+                                                    <f:selectItems value="#{graduadoAplicarOferta.lst_oferta_laboral}" var="c" itemValue="#{c}" itemLabel="#{c.empresa.nombre}->#{c.tipo_cargo.nombre}"/>
+
+                                                </b:selectOneMenu>
+                                            </div>
+                                            <b:commandButton action="#{graduadoAplicarOferta.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{graduadoAplicarOferta.edit==true}">
+                                            <div class="input-group mb-4">
+                                                <b:inputText disabled="true" value="#{graduadoAplicarOferta.item.oferta_laboral.empresa.nombre}" placeholder="Dirección" required="true" label="Empresa" maxlength="2"  >
+                                                    <f:facet name="prepend" class="icono-input" >
+                                                        <b:iconAwesome name="fa-building"/>
+                                                    </f:facet>
+                                                </b:inputText>
+                                            </div>
+                                            <div class="input-group mb-4">
+                                                <b:inputText disabled="true"  value="#{graduadoAplicarOferta.item.oferta_laboral.caract_cargo}" placeholder="Dirección" required="true" label="Cargo" maxlength="2"  >
+                                                    <f:facet name="prepend" class="icono-input" >
+                                                        <b:iconAwesome name="fa-building"/>
+                                                    </f:facet>
+                                                </b:inputText>
+                                            </div>
+
+                                            <b:commandButton  action="#{graduadoAplicarOferta.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{graduadoAplicarOferta.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="graduadoAplicarOferta" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
             </ui:define>
 
         </ui:composition>
