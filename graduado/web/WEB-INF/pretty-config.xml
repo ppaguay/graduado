@@ -46,6 +46,18 @@
         <pattern value="/aplicarOferta"/>
         <view-id value="/app/views/administrador/aplicarOferta.xhtml" />
     </url-mapping>   
+    <url-mapping id="capacitacion">
+        <pattern value="/capacitacion"/>
+        <view-id value="/app/views/administrador/capacitacion.xhtml" />
+    </url-mapping>   
+    <url-mapping id="cursado">
+        <pattern value="/cursado"/>
+        <view-id value="/app/views/administrador/cursado.xhtml" />
+    </url-mapping>   
+    <url-mapping id="personal">
+        <pattern value="/personal"/>
+        <view-id value="/app/views/administrador/personal.xhtml" />
+    </url-mapping>   
     <!--fin admin-->
     <!--empresa-->
     <url-mapping id="adminEmpresa">
