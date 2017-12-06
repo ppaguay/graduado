@@ -97,7 +97,9 @@ list-links-app{
     margin-left: 1em;
 }
 
-
+.frm-all .dataTables_wrapper{
+    display: block;
+}
 
 @media (max-width: 600px){
     .frm-all{

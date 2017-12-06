@@ -144,6 +144,7 @@ public class AccesoDatos {
         return respuesta;
     }
 //estos devulven un conjunto de objetos
+
     public static ConjuntoResultado ejecutaQuery(String query) throws Exception {
         Global global = new Global();
         ResultSet rs = null;
@@ -224,6 +225,52 @@ public class AccesoDatos {
             throw exCarga;
         }
         return conj;
+    }
+
+    public static int ejecutaQueryInsertReturn(String query, ArrayList<Parametro> parametros) throws Exception {
+
+        ResultSet rs = null;
+        PreparedStatement ptrs = null;
+        int id_last_insert = 0;
+        Connection con = null;
+        Global global = new Global();
+        try {
+            Class.forName(global.getDRIVER());
+            try {
+                String url = global.getURL();
+                con = DriverManager.getConnection(url, global.getUSER(), global.getPASS());
+                ptrs = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+                for (Parametro parametro : parametros) {
+                    ptrs.setObject(parametro.getPosicion(), parametro.getValor());
+                }
+                int a = ptrs.executeUpdate();
+                rs = ptrs.getGeneratedKeys();
+                if (rs.next()) {
+                    id_last_insert = rs.getInt(1);
+                }
+                //conj.Fill(rs);
+                rs.close();
+                ptrs.close();
+                rs = null;
+                ptrs = null;
+            } catch (SQLException exConec) {
+                throw exConec;
+            } finally {
+                try {
+                    if (con != null) {
+                        if (!(con.isClosed())) {
+                            con.close();
+                        }
+                        con = null;
+                    }
+                } catch (Exception ex) {
+                    throw ex;
+                }
+            }
+        } catch (ClassNotFoundException exCarga) {
+            throw exCarga;
+        }
+        return id_last_insert;
     }
     /**
      * ***************************START REPORTES****************************

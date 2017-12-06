@@ -78,6 +78,22 @@
         <pattern value="/adminGraduado"/>
         <view-id value="/app/views/graduados/adminGraduado.xhtml" />
     </url-mapping>  
+    <url-mapping id="graduadoAplicarOferta">
+        <pattern value="/graduadoAplicarOferta"/>
+        <view-id value="/app/views/graduados/graduadoAplicarOferta.xhtml" />
+    </url-mapping>  
+    <url-mapping id="graduadoCapacitacion">
+        <pattern value="/graduadoCapacitacion"/>
+        <view-id value="/app/views/graduados/graduadoCapacitacion.xhtml" />
+    </url-mapping>  
+    <url-mapping id="graduadoHistoriaLaboral">
+        <pattern value="/graduadoHistoriaLaboral"/>
+        <view-id value="/app/views/graduados/graduadoHistoriaLaboral.xhtml" />
+    </url-mapping>  
+    <url-mapping id="graduadoResultados">
+        <pattern value="/graduadoResultados"/>
+        <view-id value="/app/views/graduados/graduadoResultados.xhtml" />
+    </url-mapping>  
     <!--fin graduado-->
     
     <!--

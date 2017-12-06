@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../../templateGraduado.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <h:form >
+
+                        <b:commandButton update="frmadd" action="#{graduadoCapacitacionController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" oncomplete="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                        <samp class="text-muted center_content-text title-content  ">Capacitación</samp>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:dataTable searching="true" value="#{graduadoCapacitacionController.lst_capacitacion}"
+                                 var="car">
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Descripcion
+                            </f:facet>
+                            #{car.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Horas
+                            </f:facet>
+                            #{car.horas}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Caracteristicas
+                            </f:facet>
+                            #{car.caracteristica}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fecha
+                            </f:facet>
+                            #{graduadoCapacitacionController.convertMillisecondsToString(car.fecha)} 
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Ver
+                            </f:facet>
+                            <b:commandButton class=" btn-table-actions" oncomplete="$('.modalAdd').modal()"  action="#{graduadoCapacitacionController.ver(car)}" update="frmadd" ><i class="fa fa-eye" aria-hidden="true"></i></b:commandButton>
+                            <b:commandButton class=" btn-table-actions"  action="#{graduadoCapacitacionController.eliminar(car)}" update="frmadd all:frmdatos" ><i class="fa fa-trash" aria-hidden="true"></i></b:commandButton>
+                            
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Capacitación</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{graduadoCapacitacionController.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nueva Capacitación</p>
+
+
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{graduadoCapacitacionController.item.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:icon name="user" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{graduadoCapacitacionController.item.horas}" placeholder="Horas" required="true" label="Horas"  type="number">
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-clock-o" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{graduadoCapacitacionController.item.caracteristica}" placeholder="Características" required="true" label="Características"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-phone-square"/>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <b:inputText  value="#{graduadoCapacitacionController.fecha}" placeholder="Fecha" required="true" label="Fecha " type="date"  >
+
+                                    </b:inputText>
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu   value="#{graduadoCapacitacionController.item.tipo_capacitacion}" class="select-app"  required="true" label="Tipo Capacitación" >
+                                            <f:selectItems value="#{graduadoCapacitacionController.lst_tipo_capacitacion}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="#{graduadoCapacitacionController.edit==false}">
+                                            <b:commandButton action="#{graduadoCapacitacionController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{graduadoCapacitacionController.edit==true}">
+                                            <b:commandButton  action="#{graduadoCapacitacionController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{graduadoCapacitacionController.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="graduadoCapacitacion" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
