@@ -30,6 +30,7 @@
         <h:outputScript name="js/tether.min.js" />
 
         <title>Admin</title>
+        <f:event type="preRenderView" listener="#{sessionController.verificarLogeoEmpresa()}"></f:event>
     </h:head>
 
     <h:body>

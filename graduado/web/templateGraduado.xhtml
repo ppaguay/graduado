@@ -30,6 +30,7 @@
         <h:outputScript name="js/tether.min.js" />
 
         <title>Admin</title>
+        <f:event type="preRenderView" listener="#{sessionController.verificarLogeoGraduado()}"></f:event>
     </h:head>
 
     <h:body>
@@ -42,7 +43,7 @@
                     <a class="navbar-brand brand-logo-mini" href="#">SG</a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
-                   
+
                     <form class="form-inline mt-2 mt-md-0 hidden-md-down">
                         <input class="form-control mr-sm-2 search" type="text" placeholder="Search"/>
                     </form>

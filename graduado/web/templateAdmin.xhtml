@@ -31,6 +31,7 @@
         <h:outputScript name="js/jquery.dataTables.min.js" />
 
         <title>Admin</title>
+        <f:event type="preRenderView" listener="#{sessionController.verificarLogeoAdmin()}"></f:event>
     </h:head>
 
     <h:body>

@@ -5,16 +5,19 @@
  */
 package ec.edu.itsbolibar.www.bean;
 
+import ec.edu.itsbolivar.www.rnegocio.clases.Personal;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 /**
  *
  * @author XL
  */
-@Named(value = "sessionController")
-@Dependent
+@ManagedBean
+@ViewScoped
 public class sessionController {
 
     /**
@@ -22,7 +25,8 @@ public class sessionController {
      */
     public sessionController() {
     }
-      public void closeSession() {
+
+    public void closeSession() {
         System.out.println("salir");
         try {
             System.out.println("logOut");
@@ -31,4 +35,90 @@ public class sessionController {
         } catch (Exception e) {
         }
     }
+
+    public void verificarLogeoAdmin() {
+        try {
+            //este metodo rerifica si hat session si no se redirecciona
+            Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+
+            if (personal != null) {
+
+                if (personal.getTipo_personal().getCodigo() != 1) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+                }
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+            }
+
+        } catch (Exception e) {
+            System.out.println("error verificar");
+
+        }
+
+    }
+
+    public void verificarLogeoGraduado() {
+        try {
+            //este metodo rerifica si hat session si no se redirecciona
+            Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+
+            if (personal != null) {
+
+                if (personal.getTipo_personal().getCodigo() != 2) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+                }
+
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void verificarLogeoEmpresa() {
+        try {
+            //este metodo rerifica si hat session si no se redirecciona
+
+            Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+
+            if (personal != null) {
+
+                if (personal.getTipo_personal().getCodigo() != 3) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+                }
+            } else {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public void verificarSessionActivo() {
+        try {
+            //este metodo rerifica si hat session si no se redirecciona
+
+            Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+
+            if (personal != null) {
+
+                if (personal.getTipo_personal().getCodigo() == 3) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("adminEmpresa");
+                }
+                if (personal.getTipo_personal().getCodigo() == 2) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("adminGraduado");
+                }
+                if (personal.getTipo_personal().getCodigo() == 1) {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("admin");
+                }
+            } 
+
+        } catch (Exception e) {
+
+        }
+    }
+
 }
