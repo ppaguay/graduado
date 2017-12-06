@@ -52,9 +52,9 @@ lstpar.add(new Parametro(4,obj.getTipo_cargo().getCodigo()));
 
  lstpar.add(new Parametro(1,obj.getCodigo()));
  lstpar.add(new Parametro(8,obj.getCodigo()));
- lstpar.add(new Parametro(6,obj.getFechainicio()));
- lstpar.add(new Parametro(7,obj.getFechafin()));
- lstpar.add(new Parametro(8,obj.getEmpresa()));
+ lstpar.add(new Parametro(5,obj.getFechainicio()));
+ lstpar.add(new Parametro(6,obj.getFechafin()));
+ lstpar.add(new Parametro(7,obj.getEmpresa()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 

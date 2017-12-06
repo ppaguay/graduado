@@ -42,6 +42,10 @@
         <pattern value="/historiaLaboral"/>
         <view-id value="/app/views/administrador/historiaLaboral.xhtml" />
     </url-mapping>   
+    <url-mapping id="aplicarOferta">
+        <pattern value="/aplicarOferta"/>
+        <view-id value="/app/views/administrador/aplicarOferta.xhtml" />
+    </url-mapping>   
     <!--fin admin-->
     <!--empresa-->
     <url-mapping id="adminEmpresa">
