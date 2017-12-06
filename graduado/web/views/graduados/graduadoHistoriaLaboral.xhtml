@@ -1,18 +1,131 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
-                content
+                <div class="header-content">
+                    <h:form >
+
+                        <b:commandButton update="frmadd" action="#{graduadoHistoriaLaboralController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" oncomplete="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                        <samp class="text-muted center_content-text title-content  ">Historia Laboral</samp>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:dataTable searching="true" value="#{graduadoHistoriaLaboralController.lst_historia_laboral}"
+                                 var="car">
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Empresa
+                            </f:facet>
+                            #{car.empresa}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Causa Salida
+                            </f:facet>
+                            #{car.tipo_causa_salida.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Cargo
+                            </f:facet>
+                            #{car.tipo_cargo.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fecha
+                            </f:facet>
+                            #{graduadoHistoriaLaboralController.convertMillisecondsToString(car.fechainicio)}  a     #{graduadoHistoriaLaboralController.convertMillisecondsToString(car.fechafin)} 
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Ver
+                            </f:facet>
+                 
+                            <b:commandButton class=" btn-table-actions" oncomplete="$('.modalAdd').modal()"  action="#{graduadoHistoriaLaboralController.ver(car)}" update="frmadd" ><i class="fa fa-eye" aria-hidden="true"></i></b:commandButton>
+                            <b:commandButton class=" btn-table-actions"  action="#{graduadoHistoriaLaboralController.eliminar(car)}" update="frmadd all:frmdatos" ><i class="fa fa-trash" aria-hidden="true"></i></b:commandButton>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
             </ui:define>
 
             <ui:define name="modal">
-                modal
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Historia Laboral</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{graduadoHistoriaLaboralController.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nueva historia laboral</p>
+                                    <b:inputText  value="#{graduadoHistoriaLaboralController.fechaInicio}" placeholder="Fecha" required="true" label="Fecha Inicio" type="date"  >
+
+                                    </b:inputText>
+                                    <b:inputText  value="#{graduadoHistoriaLaboralController.fechaFin}" placeholder="Fecha" required="true" label="Fecha Fin" type="date"  >
+
+                                    </b:inputText>
+
+                                    <div class="input-group mb-4">
+                                        <b:inputText  value="#{graduadoHistoriaLaboralController.item.empresa}" placeholder="Dirección" required="true" label="Empresa"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-building"/>
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu   value="#{graduadoHistoriaLaboralController.item.tipo_causa_salida}" class="select-app"  required="true" label="Causa Salida" >
+                                            <f:selectItems value="#{graduadoHistoriaLaboralController.lst_causa_salida}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu   value="#{graduadoHistoriaLaboralController.item.tipo_cargo}" class="select-app"  required="true" label="Tipo Cargo" >
+                                            <f:selectItems value="#{graduadoHistoriaLaboralController.lst_tipo_cargo}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="#{graduadoHistoriaLaboralController.edit==false}">
+                                            <b:commandButton action="#{graduadoHistoriaLaboralController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{graduadoHistoriaLaboralController.edit==true}">
+                                            <b:commandButton  action="#{graduadoHistoriaLaboralController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{graduadoHistoriaLaboralController.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="graduadoHistoriaLaboral" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
             </ui:define>
 
         </ui:composition>
