@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition template="./../../templateAdmin.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"              
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <div class="header-content">
+            <h:form >
+
+                <b:commandButton update="frmNuevo" action="#{tipoActividadController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" 
+                                 oncomplete="$('.classNuevo').modal()" class="btn-redondo content-left"/>
+                <samp class="text-muted center_content-text title-content  ">Empresas</samp>
+
+            </h:form>
+        </div>
+        <h:form class="frm-all" id="frmdatos">
+            <b:dataTable searching="true" value="#{tipoActividadController.lista}"
+                         var="obj">
+                <b:dataTableColumn>
+                    <f:facet name="header">
+                        Codigo
+                    </f:facet>
+                    #{obj.codigo}
+                </b:dataTableColumn>
+                <b:dataTableColumn>
+                    <f:facet name="header">
+                        Nombre
+                    </f:facet>
+                    #{obj.nombre}
+                </b:dataTableColumn>                
+                <b:dataTableColumn>
+                    <f:facet name="header">
+                        Ver
+                    </f:facet>
+                    <b:commandButton value="Ver" oncomplete="$('.classNuevo').modal()"  action="#{tipoActividadController.ver(obj)}" update="frmNuevo" ></b:commandButton>
+                    <b:commandButton value="Eliminar"   action="#{tipoActividadController.eliminar(obj)}" update="frmNuevo all:frmdatos" ></b:commandButton>
+
+                </b:dataTableColumn>
+            </b:dataTable>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="modal">
+        <b:modal  class="classNuevo">
+            <h3 class="text-muted center_content-text">Tipo Actividad</h3>
+            <h:form id="frmNuevo" >
+                <h:form >
+                    <div class="card mx-4 form-add" >
+                        <div class="card-body p-4">
+
+                            <p class="text-muted">Nuevo Tipo Actividad</p>
+
+
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{tipoActividadController.tipoactividad.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                        </div>
+
+                    </div>
+                    <c:choose>
+                        <c:when test="#{tipoActividadController.edit==false}">
+                            <b:commandButton action="#{tipoActividadController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
+
+                        </c:when>
+                        <c:when test="#{tipoActividadController.edit==true}">
+                            <b:commandButton  action="#{tipoActividadController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
+
+                        </c:when>
+                    </c:choose>
+
+
+
+
+                    <b:messages id="messages"></b:messages>
+                    <div class="form-group" style="float: right;">
+
+                    </div>
+                </h:form>
+
+                <h:form rendered="#{tipoActividadController.modal==true}">
+                    <div class="center_content-text">
+
+                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                        <br></br>
+
+                        <a  class="btn btn-block btn-success" href="empresas" look="btn-success" value="OK" update="@form" >OK</a>
+                    </div>
+                </h:form>
+            </h:form>
+        </b:modal>
+    </ui:define>
+</ui:composition>
+
+
