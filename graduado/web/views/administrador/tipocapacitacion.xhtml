@@ -13,14 +13,14 @@
         <div class="header-content">
             <h:form >
 
-                <b:commandButton update="frmNuevo" action="#{tipoActividadController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" 
+                <b:commandButton update="frmNuevo" action="#{tipoCapacitacionController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" 
                                  oncomplete="$('.classNuevo').modal()" class="btn-redondo content-left"/>
-                <samp class="text-muted center_content-text title-content  ">Tipos de Actividades de Empresas</samp>
+                <samp class="text-muted center_content-text title-content  ">Tipo Capacitaciones</samp>
 
             </h:form>
         </div>
         <h:form class="frm-all" id="frmdatos">
-            <b:dataTable searching="true" value="#{tipoActividadController.lista}"
+            <b:dataTable searching="true" value="#{tipoCapacitacionController.lista}"
                          var="obj">
                 <b:dataTableColumn>
                     <f:facet name="header">
@@ -38,8 +38,8 @@
                     <f:facet name="header">
                         Ver
                     </f:facet>
-                    <b:commandButton value="Ver" oncomplete="$('.classNuevo').modal()"  action="#{tipoActividadController.ver(obj)}" update="frmNuevo" ></b:commandButton>
-                    <b:commandButton value="Eliminar"   action="#{tipoActividadController.eliminar(obj)}" update="frmNuevo all:frmdatos" ></b:commandButton>
+                    <b:commandButton value="Ver" oncomplete="$('.classNuevo').modal()"  action="#{tipoCapacitacionController.ver(obj)}" update="frmNuevo" ></b:commandButton>
+                    <b:commandButton value="Eliminar"   action="#{tipoCapacitacionController.eliminar(obj)}" update="frmNuevo all:frmdatos" ></b:commandButton>
 
                 </b:dataTableColumn>
             </b:dataTable>
@@ -48,17 +48,17 @@
 
     <ui:define name="modal">
         <b:modal  class="classNuevo">
-            <h3 class="text-muted center_content-text">Tipo Actividad</h3>
+            <h3 class="text-muted center_content-text">Tipo Capacitación</h3>
             <h:form id="frmNuevo" >
                 <h:form >
                     <div class="card mx-4 form-add" >
                         <div class="card-body p-4">
 
-                            <p class="text-muted">Nuevo Tipo Actividad</p>
+                            <p class="text-muted">Nuevo Tipo Capacitación</p>
 
 
                             <div class="input-group mb-3">
-                                <b:inputText  value="#{tipoActividadController.tipoactividad.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                <b:inputText  value="#{tipoCapacitacionController.tipocapacitacion.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
                                     <f:facet name="prepend" class="icono-input" >
                                         <b:icon name="pencil" />
                                     </f:facet>
@@ -68,12 +68,12 @@
 
                     </div>
                     <c:choose>
-                        <c:when test="#{tipoActividadController.edit==false}">
-                            <b:commandButton action="#{tipoActividadController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
+                        <c:when test="#{tipoCapacitacionController.edit==false}">
+                            <b:commandButton action="#{tipoCapacitacionController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
 
                         </c:when>
-                        <c:when test="#{tipoActividadController.edit==true}">
-                            <b:commandButton  action="#{tipoActividadController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
+                        <c:when test="#{tipoCapacitacionController.edit==true}">
+                            <b:commandButton  action="#{tipoCapacitacionController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmNuevo all:frmdatos" ></b:commandButton>
 
                         </c:when>
                     </c:choose>
@@ -87,7 +87,7 @@
                     </div>
                 </h:form>
 
-                <h:form rendered="#{tipoActividadController.modal==true}">
+                <h:form rendered="#{tipoCapacitacionController.modal==true}">
                     <div class="center_content-text">
 
                         <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>

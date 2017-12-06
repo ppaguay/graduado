@@ -7,7 +7,7 @@ public class FTipo_capacitacion{
 
  public static boolean insertar(Tipo_capacitacion obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into tipo_capacitacion values (?,?)";
+ String sql = "insert into tipo_capacitacion (nombre) values (?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -15,8 +15,8 @@ ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos sin referencias
 
- lstpar.add(new Parametro(1,obj.getCodigo()));
- lstpar.add(new Parametro(2,obj.getNombre()));
+
+ lstpar.add(new Parametro(1,obj.getNombre()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
