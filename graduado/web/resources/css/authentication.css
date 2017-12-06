@@ -72,3 +72,24 @@ and open the template in the editor.
 .nav >li >a{
 
 }
+.form-perfil{
+    text-align: center;
+}
+.panel-grid{
+
+}
+.kebab-app{
+    padding-top: 40%;
+}
+list-links-app{
+
+}
+.div-perfil{
+    display: inline-flex;
+}
+.link-app{
+
+}
+.link-app a{
+    color: #848484;
+}

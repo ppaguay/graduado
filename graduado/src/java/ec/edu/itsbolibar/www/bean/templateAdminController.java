@@ -20,7 +20,8 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class templateAdminController {
 
-    Personal personal = new Personal();
+    boolean modal = false;
+    Personal item = new Personal();
 
     public templateAdminController() {
         try {
@@ -30,32 +31,43 @@ public class templateAdminController {
     }
 
     public void cargardatos() throws IOException {
-        personal = personalLogueado();
+        item = itemLogueado();
 
     }
 
-    public Personal personalLogueado() throws IOException {
-        Personal personal = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+    public Personal itemLogueado() throws IOException {
+        Personal item = (Personal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 
-        if (personal != null) {
+        if (item != null) {
 
         } else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("login");
         }
-        return personal;
+        return item;
 
     }
 
-    public void Actualizar() throws Exception {
-        FPersonal.modificar(personal);
+    public void actualizar() throws Exception {
+        modal = true;
+        FPersonal.modificar(item);
     }
 
-    public Personal getPersonal() {
-        return personal;
+   
+
+    public boolean isModal() {
+        return modal;
     }
 
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
+    public void setModal(boolean modal) {
+        this.modal = modal;
+    }
+
+    public Personal getItem() {
+        return item;
+    }
+
+    public void setItem(Personal item) {
+        this.item = item;
     }
     
 

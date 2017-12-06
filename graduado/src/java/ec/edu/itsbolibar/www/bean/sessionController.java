@@ -88,6 +88,8 @@ public class sessionController {
                 if (personal.getTipo_personal().getCodigo() != 3) {
                     FacesContext.getCurrentInstance().getExternalContext().redirect("login");
                 }
+                System.out.println("correcto");
+               
             } else {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("login");
             }

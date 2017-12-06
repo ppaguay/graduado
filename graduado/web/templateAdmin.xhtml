@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -68,9 +69,26 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                     <nav style="box-shadow: 1px 0 5px -2px #ccc;" class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
                         <div class="user-info">
-                            <img src="img/user.png" alt=""/>
-                            <p class="name">#{templateAdminController.personal.nombre}</p>
-                            <p class="designation">Administrador</p>
+                            <h:form class="form-perfil" id="frm_perfil">
+                                <div class="div-perfil">
+                                    <img src="img/user.png" alt=""/>
+
+                                    <b:kebab content-disabled="false" id="kebabId"  class="kebab-app">
+                                        <b:listLinks  class="list-links-app">
+                                            <b:navLink onclick="$('.modalShowEditPerfil').modal()" icon-awesome="fa-user-o" class="link-app" value="Perfil" ></b:navLink>
+                                            <b:navLink></b:navLink>
+                                            <b:navLink header="Otros"></b:navLink>
+                                            <b:navLink  onclick="$('.modalShowAbout').modal()" icon-awesome="fa-info-circle" class="link-app" value="About" href="#"></b:navLink>
+
+                                        </b:listLinks>
+                                    </b:kebab>
+                                </div>
+
+
+                                <p class="name">#{templateAdminController.item.nombre}</p>
+                                <p class="designation">Administrador                               
+                                </p>
+                            </h:form>
                             <span class="online"></span>
                         </div>
                         <ul class="nav" style="display: block;">
@@ -271,7 +289,69 @@
         </div>
 
         <ui:insert name="modal">modal</ui:insert>
+        <!--modal perfil-->
+        <b:modal  styleClass="modalShowEditPerfil">
+            <h3 class="text-muted center_content-text">Perfil</h3>
+            <h:form id="frm_perfil_contenido" >
+                <h:form rendered="#{templateAdminController.modal==false}">
+                    <div class="card mx-4 form-add" >
+                        <div class="card-body p-4">
+                            <p class="text-muted">Actualizar Perfil</p>
+                            <div class="input-group mb-3">
+                                <b:inputText disabled="true"  value="#{templateAdminController.item.nombre}" placeholder="Username" required="true" label="Username"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:inputText type="password"  value="#{templateAdminController.item.clave}" placeholder="Password" required="true" label="Password"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-key" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
 
+                            <b:commandButton action="#{templateAdminController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frm_perfil_contenido frm_perfil" ></b:commandButton>
+           
+                        </div>
+
+                    </div>
+                    <b:messages id="messages"></b:messages>
+                    <div class="form-group" style="float: right;">
+
+                    </div>
+                </h:form>
+
+                <h:form rendered="#{templateAdminController.modal==true}">
+                    <div class="center_content-text">
+
+                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                        <br></br>
+
+                        <a href="admin" class="btn btn-block btn-success"  look="btn-success" value="OK" update="@form" >OK</a>
+                    </div>
+                </h:form>
+            </h:form>
+        </b:modal>
+
+        <!--modal about-->
+        <b:modal  styleClass="modalShowAbout">
+            <div class="form-group">
+                <h4>About</h4>
+                <strong>Sistema Graduados V.1.0 </strong><br></br>
+                <i>Sistema de graduados  </i>
+                <br></br>
+                <strong>Desarrollador</strong>
+                <p></p>
+                <p></p>
+
+            </div>
+            <f:facet name="footer">
+                <!-- <b:button value="Close" dismiss="modal" />-->
+                <b:button value="Ok" look="primary" dismiss="modal" />
+            </f:facet>
+        </b:modal>
 
     </h:body>
 

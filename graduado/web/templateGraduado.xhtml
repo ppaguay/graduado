@@ -67,10 +67,24 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                     <nav class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
                         <div class="user-info">
-                            <img src="img/user.png" alt=""/>
-                            <p class="name">#{templateGraduadosController.graduado.nombre}</p>
+                            <h:form class="form-perfil" id="frm_perfil">
+                                <div class="div-perfil">
+                                    <img src="img/user.png" alt=""/>
 
-                            <p class="designation">Graduado</p>
+                                    <b:kebab content-disabled="false" id="kebabId"  class="kebab-app">
+                                        <b:listLinks  class="list-links-app">
+                                            <b:navLink onclick="$('.modalShowEditPerfil').modal()" icon-awesome="fa-user-o" class="link-app" value="Perfil" ></b:navLink>
+                                            <b:navLink></b:navLink>
+                                            <b:navLink header="Otros"></b:navLink>
+                                            <b:navLink  onclick="$('.modalShowAbout').modal()" icon-awesome="fa-info-circle" class="link-app" value="About" href="#"></b:navLink>
+
+                                        </b:listLinks>
+                                    </b:kebab>
+                                </div>
+                                <p class="name">#{templateGraduadosController.item.nombre}</p>
+
+                                <p class="designation">Graduado</p>
+                            </h:form>
                             <span class="online"></span>
                         </div>
                         <ul class="nav" style="display: block;">
@@ -128,7 +142,144 @@
         </div>
 
         <ui:insert name="modal">modal</ui:insert>
+        <!--modal perfil-->
+        <b:modal  styleClass="modalShowEditPerfil">
+            <h3 class="text-muted center_content-text">Perfil</h3>
+            <h:form id="frm_perfil_contenido" >
+                <h:form rendered="#{templateGraduadosController.modal==false}">
+                    <div class="card mx-4 form-add" >
+                        <div class="card-body p-4">
+                            <p class="text-muted">Actualizar Perfil</p>
+                            <div class="input-group mb-3">
+                                <b:inputText disabled="true"  value="#{templateGraduadosController.item.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
 
+                            <div class="input-group mb-3">
+                                <b:inputText disabled="true" value="#{templateGraduadosController.item.ci}" placeholder="Ci" required="true" label="Ci" maxlength="10" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-map-marker" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+
+
+                            <b:inputText  value="#{templateGraduadosController.fecha}" placeholder="Fecha" required="true" label="Fecha Nacimiento" type="date"  >
+
+                            </b:inputText>
+
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateGraduadosController.item.ciudad_actual}" placeholder="Ciudad Actual" required="true" label="Ciudad Actual"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <strong>@</strong>
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateGraduadosController.item.direccion}" placeholder="Dirección" required="true" label="Dirección"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-building"/>
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateGraduadosController.item.telefono}" placeholder="Telefono" required="true" label="Telefono"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-phone" />
+
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateGraduadosController.item.celular1}" placeholder="Celular 1" required="true" label="Celular 1"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-mobile" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateGraduadosController.item.celular2}" placeholder="Celular 2" required="true" label="Celular 2"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-mobile" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{templateGraduadosController.item.email}" placeholder="Email" required="true" label="Email" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <strong>@</strong>
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{templateGraduadosController.item.facebook}" placeholder="Url Facebook" required="true" label="Url Facebook" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-facebook-square" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:inputText type="password" value="#{templateGraduadosController.item.clave}" placeholder="Pasword" required="true" label="Password" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-key" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:selectOneMenu   value="#{templateGraduadosController.item.estado_civil}" class="select-app"  required="true" label="Estado Civil" >
+                                    <f:selectItems value="#{templateGraduadosController.lst_estadoCivil}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                </b:selectOneMenu>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:selectOneMenu   value="#{templateGraduadosController.item.tipo_licencia}" class="select-app"  required="true" label="Tipo Licencia" >
+                                    <f:selectItems value="#{templateGraduadosController.lst_TipoLicencia}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                </b:selectOneMenu>
+                            </div>
+                              <b:commandButton action="#{templateGraduadosController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frm_perfil_contenido frm_perfil" ></b:commandButton>
+
+                        </div>
+
+                    </div>
+                    <b:messages id="messages"></b:messages>
+                    <div class="form-group" style="float: right;">
+
+                    </div>
+                </h:form>
+
+                <h:form rendered="#{templateGraduadosController.modal==true}">
+                    <div class="center_content-text">
+
+                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                        <br></br>
+
+                        <a href="adminGraduado" class="btn btn-block btn-success"  look="btn-success" value="OK" update="@form" >OK</a>
+                    </div>
+                </h:form>
+            </h:form>
+        </b:modal>
+
+        <!--modal about-->
+        <b:modal  styleClass="modalShowAbout">
+            <div class="form-group">
+                <h4>About</h4>
+                <strong>Sistema Graduados V.1.0 </strong><br></br>
+                <i>Sistema de graduados  </i>
+                <br></br>
+                <strong>Desarrollador</strong>
+                <p></p>
+                <p></p>
+
+            </div>
+            <f:facet name="footer">
+                <!-- <b:button value="Close" dismiss="modal" />-->
+                <b:button value="Ok" look="primary" dismiss="modal" />
+            </f:facet>
+        </b:modal>
 
     </h:body>
 

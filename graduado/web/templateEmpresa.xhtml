@@ -43,7 +43,7 @@
                     <a class="navbar-brand brand-logo-mini" href="#">SG</a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
-                   
+
                     <form class="form-inline mt-2 mt-md-0 hidden-md-down">
                         <input class="form-control mr-sm-2 search" type="text" placeholder="Search"/>
                     </form>
@@ -67,9 +67,23 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                     <nav class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
                         <div class="user-info">
-                            <img src="img/user.png" alt=""/>
-                            <p class="name">#{templateEmpresaController.empresa.nombre}</p>
-                            <p class="designation">Empresa</p>
+                            <h:form class="form-perfil" id="frm_perfil">
+                                <div class="div-perfil">
+                                    <img src="img/user.png" alt=""/>
+
+                                    <b:kebab content-disabled="false" id="kebabId"  class="kebab-app">
+                                        <b:listLinks  class="list-links-app">
+                                            <b:navLink onclick="$('.modalShowEditPerfil').modal()" icon-awesome="fa-user-o" class="link-app" value="Perfil" ></b:navLink>
+                                            <b:navLink></b:navLink>
+                                            <b:navLink header="Otros"></b:navLink>
+                                            <b:navLink  onclick="$('.modalShowAbout').modal()" icon-awesome="fa-info-circle" class="link-app" value="About" href="#"></b:navLink>
+
+                                        </b:listLinks>
+                                    </b:kebab>
+                                </div>
+                                <p class="name">#{templateEmpresaController.item.nombre}</p>
+                                <p class="designation">Empresa</p>
+                            </h:form>
                             <span class="online"></span>
                         </div>
                         <ul class="nav" style="display: block;">
@@ -127,7 +141,105 @@
         </div>
 
         <ui:insert name="modal">modal</ui:insert>
+        <!--modal perfil-->
+        <b:modal  styleClass="modalShowEditPerfil">
+            <h3 class="text-muted center_content-text">Perfil</h3>
+            <h:form id="frm_perfil_contenido" >
+                <h:form rendered="#{templateEmpresaController.modal==false}">
+                    <div class="card mx-4 form-add" >
+                        <div class="card-body p-4">
+                            <p class="text-muted">Actualizar Perfil</p>
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{templateEmpresaController.item.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
 
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{templateEmpresaController.item.direccion}" placeholder="Dirección" required="true" label="Dirección" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-map-marker" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateEmpresaController.item.telefono}" placeholder="Telefono" required="true" label="Telefono"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-phone-square"/>
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText disabled="true" value="#{templateEmpresaController.item.usuario}" placeholder="Usuario" required="true" label="Usuario"  >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <strong>@</strong>
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-4">
+                                <b:inputText  value="#{templateEmpresaController.item.pertenece}" placeholder="Pertenece" required="true" label="Pertenece"  maxlength="2" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:icon name="user" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:inputText  value="#{templateEmpresaController.item.clave}" placeholder="Password" required="true" label="Password" >
+                                    <f:facet name="prepend" class="icono-input" >
+                                        <b:iconAwesome name="fa-key" />
+                                    </f:facet>
+                                </b:inputText>
+                            </div>
+                            <div class="input-group mb-3">
+                                <b:selectOneMenu   value="#{templateEmpresaController.item.tipo_actividad}" class="select-app"  required="true" label="Tipo Actividad" >
+                                    <f:selectItems value="#{templateEmpresaController.lst_tipo_actividad}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                </b:selectOneMenu>
+                            </div>
+
+                            <b:commandButton action="#{templateEmpresaController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frm_perfil_contenido frm_perfil" ></b:commandButton>
+
+                        </div>
+
+                    </div>
+                    <b:messages id="messages"></b:messages>
+                    <div class="form-group" style="float: right;">
+
+                    </div>
+                </h:form>
+
+                <h:form rendered="#{templateEmpresaController.modal==true}">
+                    <div class="center_content-text">
+
+                        <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                        <br></br>
+
+                        <a href="adminEmpresa" class="btn btn-block btn-success"  look="btn-success" value="OK" update="@form" >OK</a>
+                    </div>
+                </h:form>
+            </h:form>
+        </b:modal>
+
+        <!--modal about-->
+        <b:modal  styleClass="modalShowAbout">
+            <div class="form-group">
+                <h4>About</h4>
+                <strong>Sistema Graduados V.1.0 </strong><br></br>
+                <i>Sistema de graduados  </i>
+                <br></br>
+                <strong>Desarrollador</strong>
+                <p></p>
+                <p></p>
+
+            </div>
+            <f:facet name="footer">
+                <!-- <b:button value="Close" dismiss="modal" />-->
+                <b:button value="Ok" look="primary" dismiss="modal" />
+            </f:facet>
+        </b:modal>
 
     </h:body>
 
