@@ -7,7 +7,7 @@ public class FGraduado{
 
  public static boolean insertar(Graduado obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into public.graduado values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+ String sql = "insert into graduado values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -42,7 +42,7 @@ throw ex;}
 
  public static boolean modificar(Graduado obj ) throws  Exception { 
  boolean band= false;
- String sql = "update public.graduado set codigo=?,cod_estadocivil=?,cod_tipolicencia=?,nombre=?,ci=?,fecha_nac=?,ciudad_actual=?,direccion=?,telefono=?,celular1=?,celular2=?,email=?,facebook=?,clave=? where codigo=?  ";
+ String sql = "update graduado set codigo=?,cod_estadocivil=?,cod_tipolicencia=?,nombre=?,ci=?,fecha_nac=?,ciudad_actual=?,direccion=?,telefono=?,celular1=?,celular2=?,email=?,facebook=?,clave=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -78,7 +78,7 @@ throw ex;}
 
  public static boolean eliminar(Graduado obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from public.graduado where codigo=? ";
+ String sql = "delete from graduado where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -99,7 +99,7 @@ throw ex;}
  public static Graduado obtener (int pcodigo) throws Exception  {  
  Graduado miGraduado = null;
 try{ 
- String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from public.graduado where   codigo=? ";
+ String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -117,7 +117,7 @@ return  miGraduado;
  public static ArrayList<Graduado> obtener () throws Exception  {  
  ArrayList<Graduado> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from public.graduado; ";
+ String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarGraduados(rs);
 

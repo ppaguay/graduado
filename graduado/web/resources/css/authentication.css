@@ -49,10 +49,10 @@ and open the template in the editor.
 }
 
 .frm-all{
-margin-top: 2em;
+    margin-top: 2em;
 }
 .header-content{
-/*    background: white;*/
+    /*    background: white;*/
     text-align: center;
 }
 .title-content{
@@ -67,4 +67,8 @@ margin-top: 2em;
 }
 .color-title{
     color: #a0a0a0;
+}
+
+.nav >li >a{
+
 }
