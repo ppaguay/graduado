@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../templateAdmin.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <h:form >
+
+                        <b:commandButton update="frmadd" action="#{cursandoController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" oncomplete="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                        <samp class="text-muted center_content-text title-content  ">Asignacion a Capacitación</samp>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:dataTable searching="true" value="#{cursandoController.lst_cursado}"
+                                 var="car">
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Nombre
+                            </f:facet>
+                            #{car.graduado.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Capacitación
+                            </f:facet>
+                            #{car.capacitacion.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Horas
+                            </f:facet>
+                            #{car.capacitacion.horas}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fecha
+                            </f:facet>
+                            #{cursandoController.convertMillisecondsToString(car.capacitacion.fecha)} 
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Ver
+                            </f:facet>
+                            <b:commandButton value="Ver" oncomplete="$('.modalAdd').modal()"  action="#{cursandoController.ver(car)}" update="frmadd" ></b:commandButton>
+                            <b:commandButton value="Eliminar"   action="#{cursandoController.eliminar(car)}" update="frmadd all:frmdatos" ></b:commandButton>
+
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Cursado</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{cursandoController.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nueva Asignacion a Capacitación</p>
+
+
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu  disabled="#{cursandoController.edit}"  value="#{cursandoController.item.capacitacion}" class="select-app"  required="true" label=" Capacitación" >
+                                            <f:selectItems value="#{cursandoController.lst_capacitacion}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu disabled="#{cursandoController.edit}"  value="#{cursandoController.item.graduado}" class="select-app"  required="true" label="Graduado" >
+                                            <f:selectItems value="#{cursandoController.lst_graduado}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="#{cursandoController.edit==false}">
+                                            <b:commandButton action="#{cursandoController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{cursandoController.edit==true}">
+                                            <b:commandButton disabled="#{cursandoController.edit}"  action="#{cursandoController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{cursandoController.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="cursado" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
