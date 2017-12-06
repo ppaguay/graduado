@@ -38,6 +38,10 @@
         <pattern value="/graduados"/>
         <view-id value="/app/views/administrador/graduados.xhtml" />
     </url-mapping>   
+    <url-mapping id="historiaLaboral">
+        <pattern value="/historiaLaboral"/>
+        <view-id value="/app/views/administrador/historiaLaboral.xhtml" />
+    </url-mapping>   
     <!--fin admin-->
     <!--empresa-->
     <url-mapping id="adminEmpresa">

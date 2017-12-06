@@ -7,24 +7,24 @@ public class FHistoria_laboral{
 
  public static boolean insertar(Historia_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "insert into public.historia_laboral values (?,?,?,?,?,?,?)";
+ String sql = "insert into historia_laboral( `cod_graduado`, `cod_tipocausasalida`, `cod_tipocargo`, `fechainicio`, `fechafin`, `empresa`)   values (?,?,?,?,?,?)";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
 
 
-lstpar.add(new Parametro(2,obj.getGraduado().getCodigo()));
+lstpar.add(new Parametro(1,obj.getGraduado().getCodigo()));
 
-lstpar.add(new Parametro(3,obj.getTipo_causa_salida().getCodigo()));
+lstpar.add(new Parametro(2,obj.getTipo_causa_salida().getCodigo()));
 
-lstpar.add(new Parametro(4,obj.getTipo_cargo().getCodigo()));
+lstpar.add(new Parametro(3,obj.getTipo_cargo().getCodigo()));
 
 //campos sin referencias
 
- lstpar.add(new Parametro(1,obj.getCodigo()));
- lstpar.add(new Parametro(6,obj.getFechainicio()));
- lstpar.add(new Parametro(7,obj.getFechafin()));
- lstpar.add(new Parametro(8,obj.getEmpresa()));
+ //lstpar.add(new Parametro(1,obj.getCodigo()));
+ lstpar.add(new Parametro(4,obj.getFechainicio()));
+ lstpar.add(new Parametro(5,obj.getFechafin()));
+ lstpar.add(new Parametro(6,obj.getEmpresa()));
 try { 
    band = AccesoDatos.ejecutaComando1(sql, lstpar);
 } catch (Exception ex) { 
@@ -36,7 +36,7 @@ throw ex;}
 
  public static boolean modificar(Historia_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "update public.historia_laboral set codigo=?,cod_graduado=?,cod_tipocausasalida=?,cod_tipocargo=?,fechainicio=?,fechafin=?,empresa=? where codigo=?  ";
+ String sql = "update historia_laboral set codigo=?,cod_graduado=?,cod_tipocausasalida=?,cod_tipocargo=?,fechainicio=?,fechafin=?,empresa=? where codigo=?  ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -66,7 +66,7 @@ throw ex;}
 
  public static boolean eliminar(Historia_laboral obj ) throws  Exception { 
  boolean band= false;
- String sql = "delete from public.historia_laboral where codigo=? ";
+ String sql = "delete from historia_laboral where codigo=? ";
 ArrayList<Parametro> lstpar= new ArrayList<Parametro>();
 
 //campos con referencias
@@ -87,7 +87,7 @@ throw ex;}
  public static Historia_laboral obtener (int pcodigo) throws Exception  {  
  Historia_laboral miHistoria_laboral = null;
 try{ 
- String sql = "select codigo,cod_graduado,cod_tipocausasalida,cod_tipocargo,fechainicio,fechafin,empresa from public.historia_laboral where   codigo=? ";
+ String sql = "select codigo,cod_graduado,cod_tipocausasalida,cod_tipocargo,fechainicio,fechafin,empresa from historia_laboral where   codigo=? ";
 ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
  lstpar.add(new Parametro(1,pcodigo));
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
@@ -105,7 +105,7 @@ return  miHistoria_laboral;
  public static ArrayList<Historia_laboral> obtener () throws Exception  {  
  ArrayList<Historia_laboral> lst=new ArrayList<>();
 try{ 
- String sql = "select codigo,cod_graduado,cod_tipocausasalida,cod_tipocargo,fechainicio,fechafin,empresa from public.historia_laboral; ";
+ String sql = "select codigo,cod_graduado,cod_tipocausasalida,cod_tipocargo,fechainicio,fechafin,empresa from historia_laboral; ";
 ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql);
  lst=llenarHistoria_laborals(rs);
 
@@ -134,9 +134,9 @@ obj.setTipo_cargo(FTipo_cargo.obtener(cr.getInt(4)));
 //campos sin referencias
 
 obj.setCodigo(cr.getInt(1));
-obj.setFechainicio(cr.getLong(6));
-obj.setFechafin(cr.getLong(7));
-obj.setEmpresa(cr.getString(8));
+obj.setFechainicio(cr.getLong(5));
+obj.setFechafin(cr.getLong(6));
+obj.setEmpresa(cr.getString(7));
 lst.add(obj);
 
  }
