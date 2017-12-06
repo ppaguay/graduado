@@ -19,8 +19,8 @@
         <h:outputStylesheet name="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <h:outputStylesheet name="lib/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"/>
 
+        <h:outputScript name="js/jquery-3.1.1.min.js"/>
         <h:outputScript name="lib/popper.min.js" />
-        <h:outputScript name="lib/jquery-3.2.1.slim.min.js" />
         <h:outputScript name="lib/bootstrap/js/bootstrap.js" />
         <h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js" />
         <h:outputScript name="lib/chart.js/dist/Chart.min.js" />
@@ -28,6 +28,7 @@
         <h:outputScript name="js/hoverable-collapse.js" />
         <h:outputScript name="js/misc.js" />
         <h:outputScript name="js/tether.min.js" />
+        <h:outputScript name="js/jquery.dataTables.min.js" />
 
         <title>Admin</title>
         <f:event type="preRenderView" listener="#{sessionController.verificarLogeoGraduado()}"></f:event>
@@ -65,7 +66,7 @@
             <!--End navbar-->
             <div class="container-fluid">
                 <div class="row row-offcanvas row-offcanvas-right">
-                    <nav class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
+                    <nav style="box-shadow: 1px 0 5px -2px #ccc;" class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
                         <div class="user-info">
                             <h:form class="form-perfil" id="frm_perfil">
                                 <div class="div-perfil">
@@ -125,9 +126,11 @@
                     <!-- SIDEBAR ENDS -->
 
 
-                    <div class="content-wrapper">
+                    <div style="background: white" class="content-wrapper">
                         <!--contenido-->
-                        <ui:insert name="content">Content</ui:insert>
+                        <h:form id="all">
+                            <ui:insert name="content">Content</ui:insert>
+                        </h:form>
                     </div>
                     <footer class="footer">
                         <div class="container-fluid clearfix">
@@ -240,7 +243,7 @@
 
                                 </b:selectOneMenu>
                             </div>
-                              <b:commandButton action="#{templateGraduadosController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frm_perfil_contenido frm_perfil" ></b:commandButton>
+                            <b:commandButton action="#{templateGraduadosController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frm_perfil_contenido frm_perfil" ></b:commandButton>
 
                         </div>
 

@@ -1,6 +1,7 @@
 package ec.edu.itsbolivar.www.rnegocio.funciones;
 
 import ec.edu.itsbolivar.www.accesodatos.*;
+import ec.edu.itsbolivar.www.rnegocio.clases.Empresa;
 import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
 import java.util.ArrayList;
 
@@ -95,6 +96,20 @@ public class FOferta_laboral {
         try {
             String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from oferta_laboral; ";
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
+            lst = llenarOferta_laborals(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return lst;
+    }
+    public static ArrayList<Oferta_laboral> obtener(Empresa item) throws Exception {
+        ArrayList<Oferta_laboral> lst = new ArrayList<>();
+        try {
+            ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+            lstpar.add(new Parametro(1, item.getCodigo()));
+            String sql = "select codigo,cod_empresa,cod_tipocargo,cod_tiposueldo,caract_cargo,experiencia from oferta_laboral where cod_empresa=? ORDER by codigo DESC ";
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql,lstpar);
             lst = llenarOferta_laborals(rs);
 
         } catch (Exception ex) {

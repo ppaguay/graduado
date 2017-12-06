@@ -93,3 +93,14 @@ list-links-app{
 .link-app a{
     color: #848484;
 }
+.btn-table-actions{
+    margin-left: 1em;
+}
+
+
+
+@media (max-width: 600px){
+    .frm-all{
+        overflow-x: scroll;
+    }
+}

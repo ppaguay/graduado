@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../../templateEmpresa.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <h:form >
+
+                        <b:commandButton update="frmadd" action="#{empresaOfertaTrabajoController.activeNew()}" iconAwesome="fa-plus-circle" look="btn btn-success" oncomplete="$('.modalAdd').modal()" class="btn-redondo content-left"/>
+                        <samp class="text-muted center_content-text title-content  ">Oferta Laboral</samp>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:dataTable searching="true" value="#{empresaOfertaTrabajoController.lst_ofertaLaboral}"
+                                 var="car">
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                <i class="fa fa-flask" aria-hidden="true"></i>
+                                Experiencia
+                            </f:facet>
+                            #{car.experiencia}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                Tipo Cargo
+                            </f:facet>
+                            #{car.tipo_cargo.nombre}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                Tipo Sueldo
+                            </f:facet>
+                            #{car.tipo_sueldo.rango}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                Caracteristicas Cargo
+                            </f:facet>
+                            #{car.caract_cargo}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                <i class="fa fa-braille" aria-hidden="true"></i>
+                                Ver
+                            </f:facet>
+                            <b:commandButton class=" btn-table-actions" oncomplete="$('.modalAdd').modal()"  action="#{empresaOfertaTrabajoController.ver(car)}" update="frmadd" ><i class="fa fa-eye" aria-hidden="true"></i></b:commandButton>
+                            <b:commandButton class=" btn-table-actions"  action="#{empresaOfertaTrabajoController.eliminar(car)}" update="frmadd all:frmdatos" ><i class="fa fa-trash" aria-hidden="true"></i></b:commandButton>
+
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Oferta Laboral</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{empresaOfertaTrabajoController.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nueva Oferta Laboral</p>
+
+
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu   value="#{empresaOfertaTrabajoController.item.tipo_cargo}" class="select-app"  required="true" label="Tipo Cargo" >
+                                            <f:selectItems value="#{empresaOfertaTrabajoController.lst_tipoCargo}" var="c" itemValue="#{c}" itemLabel="#{c.nombre}"/>
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <b:selectOneMenu   value="#{empresaOfertaTrabajoController.item.tipo_sueldo}" class="select-app"  required="true" label="Tipo Sueldo" >
+                                            <f:selectItems value="#{empresaOfertaTrabajoController.lst_tipoSueldo}" var="c" itemValue="#{c}" itemLabel="#{c.rango}"/>
+                                        </b:selectOneMenu>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{empresaOfertaTrabajoController.item.experiencia}" placeholder="Experiencia" required="true" label="Experiencia"  >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:icon name="user" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+
+                                    <div class="input-group mb-3">
+                                        <b:inputText  value="#{empresaOfertaTrabajoController.item.caract_cargo}" placeholder="Caracteristicas Cargo" required="true" label="Caracteristicas Cargo" >
+                                            <f:facet name="prepend" class="icono-input" >
+                                                <b:iconAwesome name="fa-map-marker" />
+                                            </f:facet>
+                                        </b:inputText>
+                                    </div>
+                                    <c:choose>
+                                        <c:when test="#{empresaOfertaTrabajoController.edit==false}">
+                                            <b:commandButton action="#{empresaOfertaTrabajoController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{empresaOfertaTrabajoController.edit==true}">
+                                            <b:commandButton  action="#{empresaOfertaTrabajoController.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Actualizar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{empresaOfertaTrabajoController.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="ofertaTrabajo" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
