@@ -32,6 +32,58 @@ public class FResultado {
         }
         return miResultado;
     }
+    public static ArrayList<Resultado> obtenerOfertaLaboral() throws Exception {
+        ArrayList<Resultado> miResultado = null;
+        try {
+            String sql = "select res.name,res.cantidad from (SELECT e.codigo,e.nombre as name,count(*) as cantidad from empresa as e INNER join oferta_laboral ola on ola.cod_empresa=e.codigo GROUP by e.codigo,e.nombre) as res";
+          
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
+            miResultado = llenarResultados(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return miResultado;
+    }
+    public static ArrayList<Resultado> obtenerHistoriaLaboral() throws Exception {
+        ArrayList<Resultado> miResultado = null;
+        try {
+            String sql = "select res.nombre,res.cantidad from (SELECT g.codigo,g.nombre,count(*) as cantidad from historia_laboral as h inner join graduado AS g on g.codigo=h.cod_graduado GROUP by g.codigo,g.nombre) as res";
+          
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
+            miResultado = llenarResultados(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return miResultado;
+    }
+    public static ArrayList<Resultado> obteneroOfertaLaboralAplicados() throws Exception {
+        ArrayList<Resultado> miResultado = null;
+        try {
+            String sql = "select res.nombre,res.cantidad from(SELECT g.codigo,g.nombre ,count(*) as cantidad FROM aplicar_oferta as ao inner join graduado as g on g.codigo=ao.cod_graduado inner join oferta_laboral as ola on ola.codigo=ao.cod_ofertalaboral INNER join empresa as em on em.codigo=ola.cod_empresa inner join tipo_cargo as tc on tc.codigo=ola.cod_tipocargo group by g.codigo,g.nombre)as res";
+          
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
+            miResultado = llenarResultados(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return miResultado;
+    }
+    public static ArrayList<Resultado> obtenerocapacitaciones() throws Exception {
+        ArrayList<Resultado> miResultado = null;
+        try {
+            String sql = "select res.nombre,res.cantidad from(SELECT g.codigo,g.nombre ,count(*)as cantidad from graduado as g inner join cursado as cu on cu.cod_graduado=g.codigo  GROUP by  g.codigo,g.nombre)res";
+          
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
+            miResultado = llenarResultados(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return miResultado;
+    }
 
     private static ArrayList<Resultado> llenarResultados(ConjuntoResultado cr) throws Exception {
         ArrayList<Resultado> lst = new ArrayList<Resultado>();

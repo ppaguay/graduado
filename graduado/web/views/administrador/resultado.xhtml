@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:hf="http://highfaces.org" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../templateAdmin.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <h:form >
+                        <samp class="text-muted center_content-text title-content  ">Resultados</samp>
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:tabView >
+                        <b:tab title="Oferta Laboral">
+                            <b:row class="row-chart1 grafico-mes" >
+
+                                <hf:chart   type="column"  xaxisLabel="Empresas" yaxisLabel="Cantidad ">
+
+                                    <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                                   type="#{resultadoAllController.grafico_selected_oferta_laboral}"
+                                                   name="Oferta Laboral"
+                                                   value="#{resultadoAllController.lst_restultado_oferta_laboral}"
+                                                   var="item"
+                                                   tickLabel="#{item.descripcion}"
+                                                   point="#{item.cantidad}"  />
+                                </hf:chart> 
+                                <div class="tipoGraficos-home">
+                                    <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                                    <h:selectOneRadio   value="#{resultadoAllController.grafico_selected_oferta_laboral}" >
+                                        <f:selectItem  itemValue="line"   itemLabel="line" />
+                                        <f:selectItem itemValue="bar" itemLabel="bar" />
+                                        <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                        <f:selectItem itemValue="column"  itemLabel="column"  />
+                                        <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                    </h:selectOneRadio>
+                                </div>
+                            </b:row>
+                        </b:tab>
+                        <b:tab title="Historia Laboral ">
+                          <b:row class="row-chart1 grafico-mes" >
+
+                                <hf:chart   type="column"  xaxisLabel="Graduados" yaxisLabel="Cantidad ">
+
+                                    <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                                   type="#{resultadoAllController.grafico_selected_historia_laboral}"
+                                                   name="Historia Laboral"
+                                                   value="#{resultadoAllController.lst_restultado_historia_laboral}"
+                                                   var="item"
+                                                   tickLabel="#{item.descripcion}"
+                                                   point="#{item.cantidad}"  />
+                                </hf:chart> 
+                                <div class="tipoGraficos-home">
+                                    <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                                    <h:selectOneRadio   value="#{resultadoAllController.grafico_selected_historia_laboral}" >
+                                        <f:selectItem  itemValue="line"   itemLabel="line" />
+                                        <f:selectItem itemValue="bar" itemLabel="bar" />
+                                        <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                        <f:selectItem itemValue="column"  itemLabel="column"  />
+                                        <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                    </h:selectOneRadio>
+                                </div>
+                            </b:row>
+                        </b:tab>
+                        <b:tab title="Graduados ">
+                            <b:row class="row-chart1 grafico-mes" >
+
+                                <hf:chart   title="Ofertas Laborales Aplicadas" type="column"  xaxisLabel="Nombres" yaxisLabel="Cantidad ">
+
+                                    <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                                   type="#{resultadoAllController.grafico_selected_graduados}"
+                                                   name="Graduados"
+                                                   value="#{resultadoAllController.lst_restultado_graduados}"
+                                                   var="item"
+                                                   tickLabel="#{item.descripcion}"
+                                                   point="#{item.cantidad}"  />
+                                </hf:chart> 
+                                <div class="tipoGraficos-home">
+                                    <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                                    <h:selectOneRadio   value="#{resultadoAllController.grafico_selected_graduados}" >
+                                        <f:selectItem  itemValue="line"   itemLabel="line" />
+                                        <f:selectItem itemValue="bar" itemLabel="bar" />
+                                        <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                        <f:selectItem itemValue="column"  itemLabel="column"  />
+                                        <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                    </h:selectOneRadio>
+                                </div>
+                            </b:row>
+                        </b:tab>
+                        <b:tab title="capacitación ">
+                           <b:row class="row-chart1 grafico-mes" >
+
+                                <hf:chart   type="column"  xaxisLabel="Nombres" yaxisLabel="Cantidad ">
+
+                                    <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                                   type="#{resultadoAllController.grafico_selected_capacitacion}"
+                                                   name="capacitación"
+                                                   value="#{resultadoAllController.lst_restultado_capacitacion}"
+                                                   var="item"
+                                                   tickLabel="#{item.descripcion}"
+                                                   point="#{item.cantidad}"  />
+                                </hf:chart> 
+                                <div class="tipoGraficos-home">
+                                    <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                                    <h:selectOneRadio   value="#{resultadoAllController.grafico_selected_capacitacion}" >
+                                        <f:selectItem  itemValue="line"   itemLabel="line" />
+                                        <f:selectItem itemValue="bar" itemLabel="bar" />
+                                        <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                        <f:selectItem itemValue="column"  itemLabel="column"  />
+                                        <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                    </h:selectOneRadio>
+                                </div>
+                            </b:row>
+                        </b:tab>
+                    </b:tabView>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                modal
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
