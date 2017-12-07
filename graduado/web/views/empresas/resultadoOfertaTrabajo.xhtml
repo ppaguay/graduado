@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+    
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:hf="http://highfaces.org" 
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -16,7 +21,29 @@
                     </h:form>
                 </div>
                 <h:form class="frm-all" id="frmdatos">
-                    
+                    <b:row class="row-chart1 grafico-mes" >
+
+                        <hf:chart  title=" Oferta Laboral"  type="column"  xaxisLabel="Oferca Laboral" yaxisLabel="Cantidad ">
+
+                            <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                           type="#{empresaResultadosController.grafico_selected}"
+                                           name="Oferta  laboral"
+                                           value="#{empresaResultadosController.lst_restultado}"
+                                           var="item"
+                                           tickLabel="#{item.descripcion}"
+                                           point="#{item.cantidad}"  />
+                        </hf:chart> 
+                        <div class="tipoGraficos-home">
+                            <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                            <h:selectOneRadio   value="#{empresaResultadosController.grafico_selected}" >
+                                <f:selectItem  itemValue="line"   itemLabel="line" />
+                                <f:selectItem itemValue="bar" itemLabel="bar" />
+                                <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                <f:selectItem itemValue="column"  itemLabel="column"  />
+                                <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                            </h:selectOneRadio>
+                        </div>
+                    </b:row>
                 </h:form>
             </ui:define>
 

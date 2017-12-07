@@ -100,6 +100,11 @@ list-links-app{
 .frm-all .dataTables_wrapper{
     display: block;
 }
+.grafico-mes{
+    display: block;
+    text-align: -webkit-center;
+    width: 100%;
+}
 
 @media (max-width: 600px){
     .frm-all{
