@@ -84,7 +84,7 @@
         <view-id value="/app/views/administrador/tipolicencia.xhtml" />
     </url-mapping>  
      <url-mapping id="tipopersonal">
-        <pattern value="/resultadoAll"/>
+        <pattern value="/tipopersonal"/>
         <view-id value="/app/views/administrador/tipopersonal.xhtml" />
     </url-mapping>  
      <url-mapping id="tiposueldo">
