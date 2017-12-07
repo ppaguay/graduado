@@ -3,36 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.itsbolibar.www.bean.admin;
+package ec.edu.itsbolivar.www.bean.admin;
 
-import ec.edu.itsbolibar.www.recursos.Util;
-import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_capacitacion;
-import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_capacitacion;
+import ec.edu.itsbolivar.www.recursos.Util;
+import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_personal;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_personal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @ViewScoped
-public class TipoCapacitacionController {
+public class TipoPersonalController {
 
-    private List<Tipo_capacitacion> lista;
-    private Tipo_capacitacion tipocapacitacion;
+    private List<Tipo_personal> lista;
+    private Tipo_personal tipopersonal;
     private boolean modal = false;
     private boolean edit = false;
 
-    public TipoCapacitacionController() {
-        tipocapacitacion = new Tipo_capacitacion();
+    public TipoPersonalController() {
+        tipopersonal = new Tipo_personal();
         cargardatos();
     }
 
     public void cargardatos() {
         try {
-            tipocapacitacion = new Tipo_capacitacion();
-            lista = FTipo_capacitacion.obtener();
+            tipopersonal = new Tipo_personal();
+            lista = FTipo_personal.obtener();
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
@@ -41,38 +40,38 @@ public class TipoCapacitacionController {
     public void insertar() {
 
         try {
-            if (FTipo_capacitacion.insertar(tipocapacitacion)) {
+            if (FTipo_personal.insertar(tipopersonal)) {
                 boolean modal = true;
                 Util.addOKMessage("Ingresado correctamente!!");
                 cargardatos();
-                tipocapacitacion = new Tipo_capacitacion();
+                tipopersonal = new Tipo_personal();
                 modal = true;
             } else {
                 Util.addErrorMessage("No se pudo ingresar");
             }
         } catch (Exception e) {
-            Logger.getLogger(TipoCapacitacionController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(TipoPersonalController.class.getName()).log(Level.SEVERE, null, e);
             Util.addErrorMessage("Error:" + e.getMessage());
         }
     }
 
-    public void ver(Tipo_capacitacion e) throws Exception {
+    public void ver(Tipo_personal e) throws Exception {
         edit = true;
-        tipocapacitacion = FTipo_capacitacion.obtener(e.getCodigo());
+        tipopersonal = FTipo_personal.obtener(e.getCodigo());
     }
 
-    public void eliminar(Tipo_capacitacion seleccionado) {
+    public void eliminar(Tipo_personal seleccionado) {
 
         try {
-            if (FTipo_capacitacion.eliminar(seleccionado)) {
+            if (FTipo_personal.eliminar(seleccionado)) {
                 Util.addOKMessage("Eliminado correctamente!!");
                 cargardatos();
-                seleccionado = new Tipo_capacitacion();
+                seleccionado = new Tipo_personal();
             } else {
                 Util.addErrorMessage("No se pudo eliminar");
             }
         } catch (Exception e) {
-            Logger.getLogger(TipoCapacitacionController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(TipoPersonalController.class.getName()).log(Level.SEVERE, null, e);
             Util.addErrorFatalMessage("Error:" + e.getMessage());
         }
     }
@@ -80,25 +79,25 @@ public class TipoCapacitacionController {
     public void actualizar() {
         modal = true;
         try {
-            if (FTipo_capacitacion.modificar(tipocapacitacion)) {
+            if (FTipo_personal.modificar(tipopersonal)) {
                 Util.addOKMessage("Modificado correctamente!!");
                 cargardatos();
-                tipocapacitacion = new Tipo_capacitacion();
+                tipopersonal = new Tipo_personal();
 
             } else {
                 Util.addErrorMessage("No se pudo modificar");
             }
         } catch (Exception e) {
-            Logger.getLogger(TipoCapacitacionController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(TipoPersonalController.class.getName()).log(Level.SEVERE, null, e);
             Util.addErrorFatalMessage("Error:" + e.getMessage());
         }
     }
 
-    public List<Tipo_capacitacion> getLista() {
+    public List<Tipo_personal> getLista() {
         return lista;
     }
 
-    public void setLista(List<Tipo_capacitacion> lista) {
+    public void setLista(List<Tipo_personal> lista) {
         this.lista = lista;
     }
 
@@ -111,7 +110,7 @@ public class TipoCapacitacionController {
     }
 
     public void activeNew() {
-        tipocapacitacion = new Tipo_capacitacion();
+        tipopersonal = new Tipo_personal();
         edit = false;
     }
 
@@ -123,12 +122,14 @@ public class TipoCapacitacionController {
         this.edit = edit;
     }
 
-    public Tipo_capacitacion getTipocapacitacion() {
-        return tipocapacitacion;
+    public Tipo_personal getTipopersonal() {
+        return tipopersonal;
     }
 
-    public void setTipocapacitacion(Tipo_capacitacion tipocapacitacion) {
-        this.tipocapacitacion = tipocapacitacion;
+    public void setTipopersonal(Tipo_personal tipopersonal) {
+        this.tipopersonal = tipopersonal;
     }
+
+
 
 }
