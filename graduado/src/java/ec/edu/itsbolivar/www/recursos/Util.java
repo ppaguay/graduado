@@ -1,4 +1,4 @@
-package ec.edu.itsbolibar.www.recursos;
+package ec.edu.itsbolivar.www.recursos;
 
 import java.util.Properties;
 import javax.faces.application.FacesMessage;
