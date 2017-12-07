@@ -1,14 +1,121 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:hf="http://highfaces.org" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
-                content
+                <br></br>
+                <div class="header-content">
+                    <h:form >
+                        <samp style="float: left" class="text-muted center_content-text title-content  ">DashBoard</samp>
+                    </h:form>
+                </div>
+                <br></br>
+                <h:form class="frm-all" id="frmdatos">
+                    <div class="row ">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h4 class="card-title font-weight-normal text-success">#{graduadoAdminController.personal} <i style="float: right" class="fa fa-2x fa-certificate fa-icons " aria-hidden="true"></i></h4>
+                                    <p class="card-text">Capacitaciones</p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 15%" aria-valuenow="75" aria-valuemin="0"
+                                             aria-valuemax="100">15%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h4 class="card-title font-weight-normal text-info">#{graduadoAdminController.empresas}<i  style="float: right" class="fa fa-2x fa-history fa-icons" aria-hidden="true"></i></h4>
+                                    <p class="card-text ">Historial Laboral</p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 20%" aria-valuenow="40" aria-valuemin="0"
+                                             aria-valuemax="100">20%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h4 class="card-title font-weight-normal text-warning">#{graduadoAdminController.graduados}<i class="fa fa-opencart fa-icons fa-2x"  style="float: right" aria-hidden="true"></i></h4>
+                                    <p class="card-text">Ofertas Aplicadas</p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                                             aria-valuemax="100">25%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 mb-4">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h4 class="card-title font-weight-normal text-danger">#{graduadoAdminController.oferta_laboral} <i style="float: right"  class="fa fa-2x fa-opencart fa-icons" aria-hidden="true"></i></h4>
+                                    <p class="card-text">Oferta Laboral Total</p>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 15%" aria-valuenow="65" aria-valuemin="0"
+                                             aria-valuemax="100">15%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6  mb-4">
+                            <div class="card">
+                                <div class="card-block">
+                                    <h5 class="card-title mb-4">Ofertas Laborales Aplicadas</h5>
+                                    <b:row class="row-chart1 grafico-mes" >
+
+                                        <hf:chart   type="column"  xaxisLabel="Oferta Laboral" yaxisLabel="Cantidad Graduados">
+
+                                            <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                                           type="#{graduadoAdminController.grafico_selected_oferta_laboral}"
+                                                           name="Oferta Laboral"
+                                                           value="#{graduadoAdminController.lst_restultado_oferta_laboral}"
+                                                           var="item"
+                                                           tickLabel="#{item.descripcion}"
+                                                           point="#{item.cantidad}"  />
+                                        </hf:chart> 
+                                        <div class="tipoGraficos-home">
+                                            <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                                            <h:selectOneRadio   value="#{graduadoAdminController.grafico_selected_oferta_laboral}" >
+                                                <f:selectItem  itemValue="line"   itemLabel="line" />
+                                                <f:selectItem itemValue="bar" itemLabel="bar" />
+                                                <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                                <f:selectItem itemValue="column"  itemLabel="column"  />
+                                                <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                            </h:selectOneRadio>
+                                        </div>
+                                    </b:row>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  mb-4">
+                            <div class="card">
+                                <div class="card-block" style="    height: 28em;">
+                                    <div class="bxslider">
+                                        <div><img src="img/logo1.jpg" title="ITS BOLIBAR"/></div>
+                                        <div><img src="img/logo2.jpg" title="Laboratorios"/></div>
+                                        <div><img src="img/logo3.jpg" title="ITS BOLIBAR"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
             </ui:define>
 
             <ui:define name="modal">
