@@ -6,6 +6,7 @@
 package ec.edu.itsbolibar.www.bean;
 
 import ec.edu.itsbolivar.www.rnegocio.clases.Personal;
+import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +19,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class sessionController {
+public class sessionController implements Serializable{
 
     /**
      * Creates a new instance of sessionController

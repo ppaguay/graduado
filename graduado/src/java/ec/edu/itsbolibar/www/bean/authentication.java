@@ -44,6 +44,7 @@ public class authentication {
         Empresa empresaLog= new Empresa();
         Graduado graduadoLog= new Graduado();
         Tipo_personal tipo_personal = new Tipo_personal();//1 admin /2graduado //3 empresa
+        try {
         if (tipo_usuario == 1) {//administrador
             Personal personal = new Personal();
             personal.setNombre(user);
@@ -53,6 +54,7 @@ public class authentication {
             lst = FPersonal.obtener();
             for (Personal item : lst) {
                 if (item.getClave().equals(personal.getClave()) && item.getNombre().equals(personal.getNombre())) {
+                    System.out.println("Usuario validado!!");
                     correct = true;
                     userLog.setCodigo(item.getCodigo());
                 }
@@ -68,7 +70,11 @@ public class authentication {
             } else {
                 FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o Contraseña "));
             }
+        }    
+        } catch (Exception e) {
+            System.out.println("Error:"+e.getMessage());
         }
+        
         if (tipo_usuario == 2) {//graduado
             Graduado g = new Graduado();
             g.setCi(user);
