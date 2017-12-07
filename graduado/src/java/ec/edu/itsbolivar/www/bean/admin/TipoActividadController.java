@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.itsbolibar.www.bean.admin;
+package ec.edu.itsbolivar.www.bean.admin;
 
-import ec.edu.itsbolibar.www.recursos.Util;
+import ec.edu.itsbolivar.www.recursos.Util;
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_actividad;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_actividad;
 import java.util.List;
@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @ViewScoped
