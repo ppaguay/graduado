@@ -61,7 +61,36 @@
     <url-mapping id="resultadoAll">
         <pattern value="/resultadoAll"/>
         <view-id value="/app/views/administrador/resultado.xhtml" />
-    </url-mapping>   
+    </url-mapping>
+    <!--otros--> 
+     <url-mapping id="tipoactividad">
+        <pattern value="/tipoactividad"/>
+        <view-id value="/app/views/administrador/tipoactividad.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tipocapacitacion">
+        <pattern value="/tipocapacitacion"/>
+        <view-id value="/app/views/administrador/tipocapacitacion.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tipocargo">
+        <pattern value="/tipocargo"/>
+        <view-id value="/app/views/administrador/tipocargo.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tipocausasalida">
+        <pattern value="/tipocausasalida"/>
+        <view-id value="/app/views/administrador/tipocausasalida.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tipolicencia">
+        <pattern value="/tipolicencia"/>
+        <view-id value="/app/views/administrador/tipolicencia.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tipopersonal">
+        <pattern value="/resultadoAll"/>
+        <view-id value="/app/views/administrador/tipopersonal.xhtml" />
+    </url-mapping>  
+     <url-mapping id="tiposueldo">
+        <pattern value="/tiposueldo"/>
+        <view-id value="/app/views/administrador/tiposueldo.xhtml" />
+    </url-mapping>  
     <!--fin admin-->
     <!--empresa-->
     <url-mapping id="adminEmpresa">
