@@ -1,14 +1,48 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:hf="http://highfaces.org" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
-                content
+                <div class="header-content">
+                    <h:form >
+                        <samp class="text-muted center_content-text title-content  ">Resultados</samp>
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                    <b:row class="row-chart1 grafico-mes" >
+
+                        <hf:chart   type="column"  xaxisLabel="Categorias" yaxisLabel="Cantidad ">
+
+                            <hf:chartSerie class="chart-column" colorByPoint="true" 
+                                           type="#{graduadosResultadosController.grafico_selected}"
+                                           name="Categorias"
+                                           value="#{graduadosResultadosController.lst_restultado}"
+                                           var="item"
+                                           tickLabel="#{item.descripcion}"
+                                           point="#{item.cantidad}"  />
+                        </hf:chart> 
+                        <div class="tipoGraficos-home">
+                            <!--<span style="font-size: 0.8em" >Tipo Grafico</span>-->
+                            <h:selectOneRadio   value="#{graduadosResultadosController.grafico_selected}" >
+                                <f:selectItem  itemValue="line"   itemLabel="line" />
+                                <f:selectItem itemValue="bar" itemLabel="bar" />
+                                <f:selectItem itemValue="pie"  itemLabel="pie" />
+                                <f:selectItem itemValue="column"  itemLabel="column"  />
+                                <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                            </h:selectOneRadio>
+                        </div>
+                    </b:row>
+                </h:form>
             </ui:define>
 
             <ui:define name="modal">
