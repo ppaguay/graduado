@@ -6,14 +6,18 @@
 package ec.edu.itsbolibar.www.bean;
 
 import ec.edu.itsbolivar.www.rnegocio.clases.Empresa;
+import ec.edu.itsbolivar.www.rnegocio.clases.Personal;
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_actividad;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FEmpresa;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FPersonal;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_actividad;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -38,13 +42,26 @@ public class empresasController {
     }
 
     public void insertar() throws Exception {
-        FEmpresa.insertar(empresa);
-        modal = true;
-        cargarDatos();
+        boolean existe = false;
+        for (Empresa p : FEmpresa.obtener()) {
+
+            if (p.getUsuario().equals(empresa.getUsuario())) {
+                existe = true;
+            }
+
+        }
+        if (existe == false) {
+
+            FEmpresa.insertar(empresa);
+            modal = true;
+            cargarDatos();
+        } else {
+            FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Empresa Ya Existe Cambie El User Name"));
+        }
     }
 
     public void actualizar() throws Exception {
-        modal=true;
+        modal = true;
         FEmpresa.modificar(empresa);
     }
 
@@ -57,13 +74,13 @@ public class empresasController {
     public void ver(Empresa e) throws Exception {
         edit = true;
         empresa = FEmpresa.obtener(e.getCodigo());
-        
-        System.out.println("tipo:Actividad"+empresa.getTipo_actividad().getNombre());
-        for ( Tipo_actividad ta: lst_tipo_actividad ) {
-            if(ta.getCodigo()==empresa.getTipo_actividad().getCodigo()){
+
+        System.out.println("tipo:Actividad" + empresa.getTipo_actividad().getNombre());
+        for (Tipo_actividad ta : lst_tipo_actividad) {
+            if (ta.getCodigo() == empresa.getTipo_actividad().getCodigo()) {
                 empresa.setTipo_actividad(ta);
             }
-            
+
         }
     }
 
@@ -116,7 +133,7 @@ public class empresasController {
     }
 
     public void activeNew() {
-        empresa= new Empresa();
+        empresa = new Empresa();
         edit = false;
     }
 

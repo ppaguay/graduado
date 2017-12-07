@@ -8,12 +8,14 @@ package ec.edu.itsbolibar.www.bean;
 import ec.edu.itsbolivar.www.rnegocio.clases.Empresa;
 import ec.edu.itsbolivar.www.rnegocio.clases.Estado_civil;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
+import ec.edu.itsbolivar.www.rnegocio.clases.Personal;
 
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_cargo;
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_licencia;
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_sueldo;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FEstado_civil;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FGraduado;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FPersonal;
 
 import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_cargo;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_licencia;
@@ -29,8 +31,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -63,11 +67,25 @@ public class graduadosController {
     }
 
     public void insertar() throws Exception {
-        item.setFecha_nac(convertStringToDateLong(fecha));
-        FGraduado.insertar(item);
 
-        modal = true;
-        cargarDatos();
+        boolean existe = false;
+        for (Graduado p : FGraduado.obtener()) {
+
+            if (p.getCi().equals(item.getCi())) {
+                existe = true;
+            }
+
+        }
+        if (existe == false) {
+            item.setFecha_nac(convertStringToDateLong(fecha));
+            FGraduado.insertar(item);
+
+            modal = true;
+            cargarDatos();
+            
+        } else {
+            FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Usuario Ya Existe"));
+        }
     }
 
     public void actualizar() throws Exception {

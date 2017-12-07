@@ -14,8 +14,10 @@ import ec.edu.itsbolivar.www.rnegocio.funciones.FTipo_personal;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -40,9 +42,22 @@ public class personalController {
     }
 
     public void insertar() throws Exception {
-        FPersonal.insertar(item);
-        modal = true;
-        cargarDatos();
+        boolean existe = false;
+        for (Personal p : FPersonal.obtener()) {
+
+            if (p.getNombre().equals(item.getNombre())) {
+                existe = true;
+            }
+
+        }
+        if (existe == false) {
+
+            FPersonal.insertar(item);
+            modal = true;
+            cargarDatos();
+        } else {
+            FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Usuario Ya Existe"));
+        }
     }
 
     public void actualizar() throws Exception {
@@ -130,7 +145,5 @@ public class personalController {
     public void setEdit(boolean edit) {
         this.edit = edit;
     }
-    
-    
 
 }
