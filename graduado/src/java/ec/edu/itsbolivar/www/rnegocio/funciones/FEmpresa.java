@@ -81,6 +81,24 @@ throw ex;}
 }
 
 
+  public static Empresa autenticar (String usuario, String clave) throws Exception  {  
+ Empresa miEmpresa = null;
+try{ 
+ String sql = "select codigo,cod_tipoactividad,nombre,direccion,telefono,usuario,pertenece,clave from empresa where   usuario=? and clave=? ";
+ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+ lstpar.add(new Parametro(1,usuario));
+ lstpar.add(new Parametro(2,clave));
+ConjuntoResultado rs= AccesoDatos.ejecutaQuery(sql,lstpar);
+ArrayList<Empresa> lst=llenarEmpresas(rs);
+ for (Empresa c : lst){
+ miEmpresa= c;
+ } 
+
+} catch (Exception ex) { 
+throw ex; }
+return  miEmpresa;
+}
+
 
  public static Empresa obtener (int pcodigo) throws Exception  {  
  Empresa miEmpresa = null;

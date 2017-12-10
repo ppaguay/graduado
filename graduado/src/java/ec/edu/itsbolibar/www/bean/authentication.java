@@ -41,57 +41,53 @@ public class authentication {
 
     public void logear() throws Exception {
         Personal userLog = new Personal();
-        Empresa empresaLog= new Empresa();
-        Graduado graduadoLog= new Graduado();
+        Empresa empresaLog = new Empresa();
+        Graduado graduadoLog = new Graduado();
         Tipo_personal tipo_personal = new Tipo_personal();//1 admin /2graduado //3 empresa
         try {
-        if (tipo_usuario == 1) {//administrador
-            Personal personal = new Personal();
-            personal.setNombre(user);
-            personal.setClave(password);
-            boolean correct = false;
-            ArrayList<Personal> lst = new ArrayList<>();
-            lst = FPersonal.obtener();
-            for (Personal item : lst) {
-                if (item.getClave().equals(personal.getClave()) && item.getNombre().equals(personal.getNombre())) {
+            if (tipo_usuario == 1) {//administrador
+                Personal personal = new Personal();
+                personal.setNombre(user);
+                personal.setClave(password);
+                boolean correct = false;
+                Personal tmp = FPersonal.autenticar(user, password);
+                if (tmp != null) {
                     System.out.println("Usuario validado!!");
                     correct = true;
-                    userLog.setCodigo(item.getCodigo());
+                    userLog.setCodigo(tmp.getCodigo());
+                }
+                if (correct) {
+                    userLog.setClave(password);
+                    userLog.setNombre(user);
+                    tipo_personal.setCodigo(1);
+                    userLog.setTipo_personal(tipo_personal);
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userLog);
+
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("admin");
+                } else {
+                    FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o ContraseÃ±a "));
                 }
             }
-            if (correct) {
-                userLog.setClave(password);
-                userLog.setNombre(user);
-                tipo_personal.setCodigo(1);
-                userLog.setTipo_personal(tipo_personal);
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", userLog);
-
-                FacesContext.getCurrentInstance().getExternalContext().redirect("admin");
-            } else {
-                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o Contraseña "));
-            }
-        }    
         } catch (Exception e) {
-            System.out.println("Error:"+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
         }
-        
+
         if (tipo_usuario == 2) {//graduado
             Graduado g = new Graduado();
             g.setCi(user);
             g.setClave(password);
 
             boolean correct = false;
-            ArrayList<Graduado> lst = new ArrayList<>();
-            lst = FGraduado.obtener();
-            for (Graduado item : lst) {
-                if (item.getClave().equals(g.getClave()) && item.getCi().equals(g.getCi())) {
-                    correct = true;
-                    graduadoLog=item;
-                    userLog.setCodigo(item.getCodigo());
-                }
-            }
-            if (correct) {
 
+            Graduado tmp = FGraduado.autenticar(user, password);
+
+            if (tmp != null) {
+                correct = true;
+                graduadoLog = tmp;
+                userLog.setCodigo(tmp.getCodigo());
+            }
+
+            if (correct) {
                 userLog.setClave(password);
                 userLog.setNombre(user);
                 tipo_personal.setCodigo(2);
@@ -101,7 +97,7 @@ public class authentication {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("adminGraduado");
             } else {
-                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o Contraseña "));
+                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o ContraseÃ±a "));
             }
         }
         if (tipo_usuario == 3) {//empresa
@@ -109,14 +105,11 @@ public class authentication {
             empresa.setUsuario(user);
             empresa.setClave(password);
             boolean correct = false;
-            ArrayList<Empresa> lst = new ArrayList<>();
-            lst = FEmpresa.obtener();
-            for (Empresa item : lst) {
-                if (item.getClave().equals(empresa.getClave()) && item.getUsuario().equals(empresa.getUsuario())) {
-                    correct = true;
-                    empresaLog=item;
-                    userLog.setCodigo(item.getCodigo());
-                }
+            Empresa tmp = FEmpresa.autenticar(user, password);
+            if (tmp != null) {
+                correct = true;
+                empresaLog = tmp;
+                userLog.setCodigo(tmp.getCodigo());
             }
             if (correct) {
                 userLog.setClave(password);
@@ -128,7 +121,7 @@ public class authentication {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("adminEmpresa");
             } else {
-                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o Contraseña "));
+                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o ContraseÃ±a "));
             }
         }
 

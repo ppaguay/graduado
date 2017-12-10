@@ -105,13 +105,14 @@ public class FAplicar_oferta {
         }
         return lst;
     }
+
     public static ArrayList<Aplicar_oferta> obtener(Graduado item) throws Exception {
         ArrayList<Aplicar_oferta> lst = new ArrayList<>();
         try {
-             ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+            ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
             lstpar.add(new Parametro(1, item.getCodigo()));
             String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from aplicar_oferta WHERE cod_graduado=? ORDER BY cod_ofertalaboral desc; ";
-            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql,lstpar);
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstpar);
             lst = llenarAplicar_ofertas(rs);
 
         } catch (Exception ex) {
@@ -133,9 +134,9 @@ public class FAplicar_oferta {
                 obj.setOferta_laboral(FOferta_laboral.obtener(cr.getInt(2)));
 
 //campos sin referencias
-                obj.setFecha_aplica(cr.getLong(3));
+                obj.setFecha_aplica((cr.getObject(3) != null) ? cr.getLong(3) : null);
                 obj.setContrato(cr.getString(4));
-                obj.setFecha_inicio(cr.getLong(5));
+                obj.setFecha_inicio((cr.getObject(5) != null) ? cr.getLong(5) : null);
                 lst.add(obj);
 
             }

@@ -81,6 +81,25 @@ public class FPersonal {
         return miPersonal;
     }
 
+       public static Personal autenticar(String nombre, String clave) throws Exception {
+        Personal miPersonal = null;
+        try {
+            String sql = "select codigo,cod_tipopersonal,nombre,clave from personal where   nombre=? and clave=? ";
+            ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+            lstpar.add(new Parametro(1, nombre));
+            lstpar.add(new Parametro(2, clave));
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstpar);
+            ArrayList<Personal> lst = llenarPersonals(rs);
+            for (Personal c : lst) {
+                miPersonal = c;
+            }
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return miPersonal;
+    }
+
     public static ArrayList<Personal> obtener() throws Exception {
         ArrayList<Personal> lst = new ArrayList<>();
         try {
