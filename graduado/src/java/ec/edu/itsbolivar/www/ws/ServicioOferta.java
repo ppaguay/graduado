@@ -6,7 +6,10 @@
 package ec.edu.itsbolivar.www.ws;
 
 import com.google.gson.Gson;
+import ec.edu.itsbolivar.www.rnegocio.clases.AppJson;
+import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
 import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FGraduado;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FOferta_laboral;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 @Path("oferta")
@@ -46,10 +50,10 @@ public class ServicioOferta {
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());
         }
-
         String json = new Gson().toJson(lista);
         return json;
     }
+
 
     @GET
     @Path("/obtener/{codigo}")
@@ -62,6 +66,7 @@ public class ServicioOferta {
             System.out.println("Error:" + e.getMessage());
         }
         return oferta;
+        
     }
 
     @GET
@@ -75,7 +80,7 @@ public class ServicioOferta {
             System.out.println("Error:" + e.getMessage());
         }
         String json = new Gson().toJson(oferta);
-        return "{"+json+"}";
+        return "{" + json + "}";
 
     }
 }
