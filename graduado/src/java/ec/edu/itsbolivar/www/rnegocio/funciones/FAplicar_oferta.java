@@ -3,6 +3,7 @@ package ec.edu.itsbolivar.www.rnegocio.funciones;
 import ec.edu.itsbolivar.www.accesodatos.*;
 import ec.edu.itsbolivar.www.rnegocio.clases.Aplicar_oferta;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
+import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
 import java.util.ArrayList;
 
 public class FAplicar_oferta {
@@ -112,6 +113,20 @@ public class FAplicar_oferta {
             ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
             lstpar.add(new Parametro(1, item.getCodigo()));
             String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from aplicar_oferta WHERE cod_graduado=? ORDER BY cod_ofertalaboral desc; ";
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstpar);
+            lst = llenarAplicar_ofertas(rs);
+
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return lst;
+    }
+    public static ArrayList<Aplicar_oferta> obtener(Oferta_laboral item) throws Exception {
+        ArrayList<Aplicar_oferta> lst = new ArrayList<>();
+        try {
+            ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+            lstpar.add(new Parametro(1, item.getCodigo()));
+            String sql = "select cod_graduado,cod_ofertalaboral,fecha_aplica,contrato,fecha_inicio from aplicar_oferta WHERE cod_ofertalaboral=? ORDER BY cod_ofertalaboral desc; ";
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstpar);
             lst = llenarAplicar_ofertas(rs);
 
