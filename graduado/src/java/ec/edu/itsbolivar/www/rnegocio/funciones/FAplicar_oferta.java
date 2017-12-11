@@ -55,6 +55,22 @@ public class FAplicar_oferta {
         }
         return band;
     }
+    
+     public static boolean actualizarRechazadas(Aplicar_oferta ofertaAceptada) throws Exception {
+        boolean band = false;
+        String sql = "update aplicar_oferta set contrato='no' where cod_graduado <> ? and cod_ofertalaboral=?  ";
+        ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
+
+
+        lstpar.add(new Parametro(1, ofertaAceptada.getGraduado().getCodigo()));
+        lstpar.add(new Parametro(2, ofertaAceptada.getOferta_laboral().getCodigo()));
+        try {
+            band = AccesoDatos.ejecutaComando1(sql, lstpar);
+        } catch (Exception ex) {
+            throw ex;
+        }
+        return band;
+    }
 
     public static boolean eliminar(Aplicar_oferta obj) throws Exception {
         boolean band = false;
