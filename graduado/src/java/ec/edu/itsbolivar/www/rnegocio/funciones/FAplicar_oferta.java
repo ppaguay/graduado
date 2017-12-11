@@ -58,7 +58,7 @@ public class FAplicar_oferta {
     
      public static boolean actualizarRechazadas(Aplicar_oferta ofertaAceptada) throws Exception {
         boolean band = false;
-        String sql = "update aplicar_oferta set contrato='no' where cod_graduado <> ? and cod_ofertalaboral=?  ";
+        String sql = "update aplicar_oferta set contrato='No' where cod_graduado <> ? and cod_ofertalaboral=?  ";
         ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
 
 

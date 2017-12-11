@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../templateEmpresa.xhtml">
+
+            <ui:define name="content">
+                <div class="header-content">
+                    <h:form >
+
+                        <a href="../ofertaTrabajo" class="btn-redondo content-left btn btn-primary"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                        <samp class="text-muted center_content-text title-content  ">Oferta Laboral </samp><br></br>
+                        <div class="jumbotron div-sub">
+
+                            <samp class="text-muted center_content-text title-content-sub  ">#{empresaRevisarOfertas.oferta_laboral.caract_cargo}</samp>
+                        </div>
+
+                    </h:form>
+                </div>
+                <h:form class="frm-all" id="frmdatos">
+                   
+                    <b:dataTable searching="true" value="#{empresaRevisarOfertas.lst_aplica_oferta}"
+                                 var="car">
+
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Estado Contrato
+                            </f:facet>
+
+                            <!--no acepta-->
+                            <b:row class="estado" rendered="#{car.contrato=='No'||car.contrato=='no'||car.contrato=='NO'}">
+                                <i style="color:red"  class="fa fa-2x fa-times-circle" aria-hidden="true"></i>
+                            </b:row>
+                            <!--Pendiente-->
+                            <b:row class="estado" rendered="#{car.contrato==''}">
+                                <i style="color: #2196F3" class="fa fa-refresh   fa-2x" aria-hidden="true"></i>
+
+                            </b:row>
+                            <!-- acepta-->
+                            <b:row class="estado" rendered="#{car.contrato=='Si'||car.contrato=='si'||car.contrato=='SI'}">
+                                <i style="color: #4CAF50" class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+
+                            </b:row>
+
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Nombres
+                            </f:facet>
+                            #{car.graduado.nombre}   
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Cedula
+                            </f:facet>
+                            #{car.graduado.ci}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Direccion
+                            </f:facet>
+                            #{car.graduado.direccion}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fecha Aplica
+                            </f:facet>
+                            #{empresaRevisarOfertas.convertMillisecondsToString(car.fecha_aplica)}
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Fecha Inicio
+                            </f:facet>
+                            <b:row style="margin-left: 1em;" rendered="#{car.contrato=='Si'||car.contrato=='si'||car.contrato=='SI'}">
+                                #{empresaRevisarOfertas.convertMillisecondsToString(car.fecha_inicio)} 
+                            </b:row>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
+                                Contrato
+                            </f:facet>
+                            <b:commandButton value="Ver" oncomplete="$('.modalAdd').modal()"  action="#{empresaRevisarOfertas.ver(car)}" update="frmadd" ></b:commandButton>
+                            <b:commandButton value="Eliminar"   action="#{empresaRevisarOfertas.eliminarContrato(car)}" update="frmadd all:frmdatos" ></b:commandButton>
+
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="modal">
+                <b:modal  class="modalAdd">
+                    <h3 class="text-muted center_content-text">Contratar Personal</h3>
+                    <h:form id="frmadd" >
+                        <h:form rendered="#{empresaRevisarOfertas.modal==false}">
+                            <div class="card mx-4 form-add" >
+                                <div class="card-body p-4">
+
+                                    <p class="text-muted">Nuevo Contrato</p>
+                                    <b:inputText disabled="true" value="#{empresaRevisarOfertas.fecha_aplica}" placeholder="Fecha" required="true" label="Fecha Aplica" type="date"  >
+
+                                    </b:inputText>
+                                    <b:inputText  rendered="#{empresaRevisarOfertas.edit}" value="#{empresaRevisarOfertas.fecha_inicio}" placeholder="Fecha" required="true" label="Fecha Inicio" type="date"  >
+
+                                    </b:inputText>
+
+                                    
+
+
+
+
+                                    <c:choose>
+                                        <c:when test="#{empresaRevisarOfertas.edit==false}">
+
+                                            <b:commandButton action="#{empresaRevisarOfertas.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                        <c:when test="#{empresaRevisarOfertas.edit==true}">
+                                           
+                                           
+
+                                            <b:commandButton  action="#{empresaRevisarOfertas.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Contratar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
+
+                                        </c:when>
+                                    </c:choose>
+
+                                </div>
+
+                            </div>
+                            <b:messages id="messages"></b:messages>
+                            <div class="form-group" style="float: right;">
+
+                            </div>
+                        </h:form>
+
+                        <h:form rendered="#{empresaRevisarOfertas.modal==true}">
+                            <div class="center_content-text">
+
+                                <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
+                                <br></br>
+
+                                <a  class="btn btn-block btn-success" href="../revisarOfertas/#{empresaRevisarOfertas.oferta_laboral.codigo}" look="btn-success" value="OK" update="@form" >OK</a>
+                            </div>
+                        </h:form>
+                    </h:form>
+                </b:modal>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -45,8 +45,8 @@
             <!--Navbar-->
             <nav style="border: none; position: fixed" class="navbar bg-primary-gradient  col-12 p-0 fixed-top navbar-inverse d-flex flex-row">
                 <div class="bg-white text-center navbar-brand-wrapper">
-                    <a class="navbar-brand brand-logo" href="#">Sistema Graduados</a>
-                    <a class="navbar-brand brand-logo-mini" href="#">SG</a>
+                    <a class="navbar-brand brand-logo" href="#{routingController.adminEmpresa}">Sistema Graduados</a>
+                    <a class="navbar-brand brand-logo-mini" href="#{routingController.adminEmpresa}">SG</a>
                 </div>
                 <div class="navbar-menu-wrapper d-flex align-items-center">
 
@@ -75,7 +75,7 @@
                         <div class="user-info">
                             <h:form class="form-perfil" id="frm_perfil">
                                 <div class="div-perfil">
-                                    <img src="img/empresa.png" alt=""/>
+                                    <img src="#{routingController.pathProyect}/img/empresa.png" alt=""/>
 
                                     <b:kebab content-disabled="false" id="kebabId"  class="kebab-app">
                                         <b:listLinks  class="list-links-app">
@@ -94,21 +94,21 @@
                         </div>
                         <ul class="nav" style="display: block;">
                             <li class="nav-item">
-                                <a class="nav-link" href="admin">
+                                <a class="nav-link" href="#{routingController.adminEmpresa}">
                                     <!-- <i class="fa fa-dashboard"></i> -->
                                     <i class="fa fa-home fa-icons" aria-hidden="true"></i>
                                     <span class="menu-title">Home</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="ofertaTrabajo">
+                                <a class="nav-link" href="#{routingController.ofertaTrabajo}">
                                     <!-- <i class="fa fa-dashboard"></i> -->
                                     <i class="fa fa-opencart fa-icons" aria-hidden="true"></i>
                                     <span class="menu-title">Ofertas Trabajo</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="resultadoOfertaTrabajo">
+                                <a class="nav-link" href="#{routingController.resultadoOfertaTrabajo}">
                                     <i class="fa fa-flask" aria-hidden="true"></i>
                                     <span class="menu-title">Resultados</span>
                                 </a>
@@ -216,7 +216,7 @@
                         <i class="fa fa-check-circle fa-4x" aria-hidden="true"></i>
                         <br></br>
 
-                        <a href="adminEmpresa" class="btn btn-block btn-success"  look="btn-success" value="OK" update="@form" >OK</a>
+                        <a href="#{routingController.adminEmpresa}" class="btn btn-block btn-success"  look="btn-success" value="OK" update="@form" >OK</a>
                     </div>
                 </h:form>
             </h:form>

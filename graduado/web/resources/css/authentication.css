@@ -58,6 +58,13 @@ and open the template in the editor.
 .title-content{
     font-size: 2em;
 }
+.title-content-sub{
+    font-size: 1.2em;
+}
+.div-sub{
+    padding-top: 1em!important;
+    padding-bottom: 1em!important;
+}
 .btn-redondo{
     border-radius: 50%!important;
 
@@ -119,14 +126,14 @@ list-links-app{
 .sidebar.sidebar-fixed .nav::-webkit-scrollbar {
     width: 12px;
 }
- 
+
 /* Track */
 .sidebar.sidebar-fixed .nav::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
- 
+
 /* Handle */
 .sidebar.sidebar-fixed .nav::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
@@ -134,7 +141,12 @@ list-links-app{
     background: rgb(17, 174, 246);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
-
+.estado{
+    margin-left: 1em!important;
+}
+.estadosAll{
+    text-align: center;
+}
 @media (max-width: 600px){
     .frm-all{
         overflow-x: scroll;

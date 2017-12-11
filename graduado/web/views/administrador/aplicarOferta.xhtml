@@ -25,6 +25,27 @@
                                  var="car">
                         <b:dataTableColumn>
                             <f:facet name="header">
+                                Estado
+                            </f:facet>
+
+                            <!--no acepta-->
+                            <b:row class="estado" rendered="#{car.contrato=='No'||car.contrato=='no'||car.contrato=='NO'}">
+                                <i style="color:red"  class="fa fa-2x fa-times-circle" aria-hidden="true"></i>
+                            </b:row>
+                            <!--Pendiente-->
+                            <b:row class="estado" rendered="#{car.contrato==''||car.contrato=='e'}">
+                                <i style="color: #2196F3" class="fa fa-refresh   fa-2x" aria-hidden="true"></i>
+
+                            </b:row>
+                            <!-- acepta-->
+                            <b:row class="estado" rendered="#{car.contrato=='Si'||car.contrato=='si'||car.contrato=='SI'}">
+                                <i style="color: #4CAF50" class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+
+                            </b:row>
+
+                        </b:dataTableColumn>
+                        <b:dataTableColumn>
+                            <f:facet name="header">
                                 Nombre
                             </f:facet>
                             #{car.graduado.nombre}
@@ -76,11 +97,13 @@
                                     </b:inputText>
 
                                     <div class="input-group mb-4">
-                                        <b:inputText  value="#{aplicarOfertaController.item.contrato}" placeholder="Dirección" required="true" label="Contrato" maxlength="2"  >
-                                            <f:facet name="prepend" class="icono-input" >
-                                                <b:iconAwesome name="fa-building"/>
-                                            </f:facet>
-                                        </b:inputText>
+                                        <b:selectOneMenu class="select-app"  value="#{aplicarOfertaController.item.contrato}"   required="true" label="Contrato">
+                                            <f:selectItem itemLabel="SI" itemValue="Si" />
+                                            <f:selectItem itemLabel="No" itemValue="No" />
+                                            <f:selectItem itemLabel="Espera" itemValue="e" />
+
+                                        </b:selectOneMenu>
+
                                     </div>
 
 
@@ -96,7 +119,7 @@
 
                                         </b:selectOneMenu>
                                     </div>
-                                   
+
                                     <c:choose>
                                         <c:when test="#{aplicarOfertaController.edit==false}">
                                             <b:commandButton action="#{aplicarOfertaController.insertar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Crear" update="@form messages frmadd all:frmdatos" ></b:commandButton>

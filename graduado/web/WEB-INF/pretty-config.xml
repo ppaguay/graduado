@@ -105,6 +105,10 @@
         <pattern value="/resultadoOfertaTrabajo"/>
         <view-id value="/app/views/empresas/resultadoOfertaTrabajo.xhtml" />
     </url-mapping>  
+    <url-mapping id="revisarOfertas">
+        <pattern value="/revisarOfertas/#{id}"/>
+        <view-id value="/app/views/empresas/revisarOfertas.xhtml" />
+    </url-mapping>  
     <!--fin empresa-->
     <!--fin graduado-->
     <url-mapping id="adminGraduado">

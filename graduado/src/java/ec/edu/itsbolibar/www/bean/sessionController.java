@@ -32,7 +32,7 @@ public class sessionController implements Serializable{
         try {
             System.out.println("logOut");
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect("login");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(router.login);
         } catch (Exception e) {
         }
     }

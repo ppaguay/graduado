@@ -55,7 +55,7 @@
                             <f:facet name="header">
                                 <i class="fa fa-braille" aria-hidden="true"></i>
                                 Ver
-                            </f:facet>
+                            </f:facet><a href="revisarOfertas/#{car.codigo}" class=" btn btn-default btn-table-actions"  ><i class="fa fa-users" aria-hidden="true"></i></a>
                             <b:commandButton class=" btn-table-actions" oncomplete="$('.modalAdd').modal()"  action="#{empresaOfertaTrabajoController.ver(car)}" update="frmadd" ><i class="fa fa-eye" aria-hidden="true"></i></b:commandButton>
                             <b:commandButton class=" btn-table-actions"  action="#{empresaOfertaTrabajoController.eliminar(car)}" update="frmadd all:frmdatos" ><i class="fa fa-trash" aria-hidden="true"></i></b:commandButton>
 

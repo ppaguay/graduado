@@ -9,7 +9,6 @@ import ec.edu.itsbolivar.www.rnegocio.clases.Aplicar_oferta;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
 import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FAplicar_oferta;
-import ec.edu.itsbolivar.www.rnegocio.funciones.FGraduado;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FOferta_laboral;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -21,6 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
@@ -33,14 +33,12 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class graduadoAplicarOferta {
+public class empresaRevisarOfertas {
 
-    Graduado graduado = new Graduado();
     Aplicar_oferta item = new Aplicar_oferta();
 
     ArrayList<Aplicar_oferta> lst_aplica_oferta = new ArrayList<>();
-
-    ArrayList<Oferta_laboral> lst_oferta_laboral = new ArrayList<>();
+    Oferta_laboral oferta_laboral = new Oferta_laboral();
 
     String fecha_aplica = "";
     String fecha_inicio = "";
@@ -48,11 +46,17 @@ public class graduadoAplicarOferta {
     boolean modal = false;
     boolean edit = false;
 
-    public graduadoAplicarOferta() {
+    public empresaRevisarOfertas() throws IOException {
         try {
+            Map requestParams = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+            int id = Integer.parseInt((String) requestParams.get("id"));
+            oferta_laboral = FOferta_laboral.obtener(id);
+            System.out.println("oferta_laboral" + oferta_laboral.getCaract_cargo());
             cargarDatos();
         } catch (Exception ex) {
+
             Logger.getLogger(historiaLaboralController.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("../404");
         }
     }
 
@@ -62,11 +66,11 @@ public class graduadoAplicarOferta {
     }
 
     public void insertar() throws Exception {
-        item.setGraduado(graduado);
-        item.setFecha_inicio(convertStringToDateLong(fecha_inicio));
+
+        //item.setFecha_inicio(convertStringToDateLong(fecha_inicio));
         item.setFecha_aplica(convertStringToDateLong(fecha_aplica));
-      
-        
+
+        item.setFecha_inicio(0l);
         item.setContrato("");//en blanco
         FAplicar_oferta.insertar(item);
 
@@ -76,17 +80,19 @@ public class graduadoAplicarOferta {
 
     public void actualizar() throws Exception {
         modal = true;
-        item.setGraduado(graduado);
+
         item.setFecha_inicio(convertStringToDateLong(fecha_inicio));
         item.setFecha_aplica(convertStringToDateLong(fecha_aplica));
+        item.setContrato("Si");
         System.out.println("Modificando" + item.getGraduado().getNombre() + item.getOferta_laboral().getEmpresa().getNombre());
         FAplicar_oferta.modificar(item);
+       FAplicar_oferta.actualizarRechazadas(item);
+        cargarDatos();
     }
 
-    public void eliminar(Aplicar_oferta e) throws Exception {
-        System.err.println("eliminado");
-
-        FAplicar_oferta.eliminar(e);
+    public void eliminarContrato(Aplicar_oferta e) throws Exception {
+        e.setContrato("No");
+        FAplicar_oferta.modificar(e);
         cargarDatos();
     }
 
@@ -97,22 +103,12 @@ public class graduadoAplicarOferta {
         fecha_aplica = convertMillisecondsToString(item.getFecha_aplica());
 //para que se carge los datos en los select
 
-        for (Oferta_laboral ta : lst_oferta_laboral) {
-            if (ta.getCodigo() == item.getOferta_laboral().getCodigo()) {
-                item.setOferta_laboral(ta);
-            }
-        }
-
     }
 
     private void cargarDatos() throws Exception {
 
-        graduado = itemLogueado();
         lst_aplica_oferta.clear();
-        lst_aplica_oferta = FAplicar_oferta.obtener(graduado);
-
-        lst_oferta_laboral.clear();
-        lst_oferta_laboral = OfertaNoAplicadas();
+        lst_aplica_oferta = FAplicar_oferta.obtener(oferta_laboral);
 
         fecha_aplica = optenerfechaActual();
         fecha_inicio = optenerfechaActual();
@@ -201,14 +197,6 @@ public class graduadoAplicarOferta {
         this.lst_aplica_oferta = lst_aplica_oferta;
     }
 
-    public ArrayList<Oferta_laboral> getLst_oferta_laboral() {
-        return lst_oferta_laboral;
-    }
-
-    public void setLst_oferta_laboral(ArrayList<Oferta_laboral> lst_oferta_laboral) {
-        this.lst_oferta_laboral = lst_oferta_laboral;
-    }
-
     public String getFecha_aplica() {
         return fecha_aplica;
     }
@@ -241,12 +229,12 @@ public class graduadoAplicarOferta {
         this.edit = edit;
     }
 
-    public Graduado getGraduado() {
-        return graduado;
+    public Oferta_laboral getOferta_laboral() {
+        return oferta_laboral;
     }
 
-    public void setGraduado(Graduado graduado) {
-        this.graduado = graduado;
+    public void setOferta_laboral(Oferta_laboral oferta_laboral) {
+        this.oferta_laboral = oferta_laboral;
     }
 
 }

@@ -88,6 +88,10 @@ public class empresaOfertaTrabajoController {
         }
     }
 
+    public void verGraduados(Oferta_laboral e) {
+        System.out.println("ver"+e.getCaract_cargo());
+    }
+
     private void cargarDatos() throws Exception {
         empresa = itemLogueado();
         item.setEmpresa(empresa);
@@ -98,7 +102,6 @@ public class empresaOfertaTrabajoController {
         lst_tipoCargo = FTipo_cargo.obtener();
         lst_tipoSueldo.clear();
         lst_tipoSueldo = FTipo_sueldo.obtener();
-        
 
     }
 
