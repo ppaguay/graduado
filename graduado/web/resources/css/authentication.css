@@ -105,6 +105,35 @@ list-links-app{
     text-align: -webkit-center;
     width: 100%;
 }
+.sidebar.sidebar-fixed .nav{
+    scrollbar-face-color: #367CD2!important;
+    scrollbar-shadow-color: #FFFFFF!important;
+    scrollbar-highlight-color: #FFFFFF!important;
+    scrollbar-3dlight-color: #FFFFFF!important;
+    scrollbar-darkshadow-color: #FFFFFF!important;
+    scrollbar-track-color: #FFFFFF!important;
+    scrollbar-arrow-color: #FFFFFF!important;
+
+}
+/* Let's get this party started */
+.sidebar.sidebar-fixed .nav::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+.sidebar.sidebar-fixed .nav::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.sidebar.sidebar-fixed .nav::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgb(17, 174, 246);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
 
 @media (max-width: 600px){
     .frm-all{

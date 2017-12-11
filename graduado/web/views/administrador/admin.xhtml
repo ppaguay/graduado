@@ -77,7 +77,7 @@
                             <div class="card">
                                 <div class="card-block">
                                     <h5 class="card-title mb-4">Oferta Laboral</h5>
-                                    <b:row class="row-chart1 grafico-mes" >
+                                    <b:row id="graf" class="row-chart1 grafico-mes" >
 
                                         <hf:chart   type="column"  xaxisLabel="Empresas" yaxisLabel="Cantidad ">
 
@@ -96,10 +96,11 @@
                                                 <f:selectItem itemValue="bar" itemLabel="bar" />
                                                 <f:selectItem itemValue="pie"  itemLabel="pie" />
                                                 <f:selectItem itemValue="column"  itemLabel="column"  />
-                                                <p:ajax event="valueChange"  update="@(.grafico-mes)" />
+                                                <f:ajax render="all"></f:ajax>
                                             </h:selectOneRadio>
                                         </div>
                                     </b:row>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
  */
 package ec.edu.itsbolibar.www.bean;
 
-import com.sun.org.apache.bcel.internal.generic.LSTORE;
+
 import ec.edu.itsbolivar.www.rnegocio.clases.Empresa;
 import ec.edu.itsbolivar.www.rnegocio.clases.Resultado;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FResultado;

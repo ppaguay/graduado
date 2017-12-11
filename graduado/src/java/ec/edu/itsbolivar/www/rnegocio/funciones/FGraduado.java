@@ -98,7 +98,7 @@ throw ex;}
         public static Graduado autenticar(String ci, String clave) throws Exception {
         Graduado miGraduado = null;
         try {
-            String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado where   codigo=? ";
+            String sql = "select codigo,cod_estadocivil,cod_tipolicencia,nombre,ci,fecha_nac,ciudad_actual,direccion,telefono,celular1,celular2,email,facebook,clave from graduado where ci=? and clave=? ";
             ArrayList<Parametro> lstpar = new ArrayList<Parametro>();
             lstpar.add(new Parametro(1, ci));
             lstpar.add(new Parametro(2, clave));
