@@ -50,14 +50,14 @@ public class ServicioAplicar_Oferta {
             aplicar_oferta.setOferta_laboral(oferta_laboral);
             appJson.setSuccess(FAplicar_oferta.insertar(aplicar_oferta) ? 1 : 0);
             if (appJson.getSuccess() == 1) {
-                appJson.setMessage("Success");
+                appJson.setMessage("Se Aplico la Oferta");
             } else {
                 appJson.setMessage("Error");
 
             }
         } catch (Exception e) {
             appJson.setSuccess(0);
-            appJson.setMessage(e.getMessage());
+            appJson.setMessage("Ya Se  Aplico la Oferta Laboral");
         }
 
         String json = new Gson().toJson(appJson);
