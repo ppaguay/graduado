@@ -49,10 +49,16 @@ public class empresaAdminController {
         personal = FPersonal.obtener().size();
         empresas = FEmpresa.obtener().size();
         
+        //por que contiene muchas letras solo para que mueste 15 letras
+        ArrayList<Resultado> lst_split = new ArrayList();
+        
         for(Resultado r :lst_restultado_oferta_laboral){
             graduados+=r.getCantidad();
+            r.setDescripcion(r.getDescripcion().substring(0, 24 )+"..");
+            lst_split.add(r);
         }
         
+        lst_restultado_oferta_laboral=lst_split;
         oferta_laboral = FOferta_laboral.obtener(item).size();
 
     }
