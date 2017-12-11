@@ -118,6 +118,10 @@
     <url-mapping id="graduadoAplicarOferta">
         <pattern value="/graduadoAplicarOferta"/>
         <view-id value="/app/views/graduados/graduadoAplicarOferta.xhtml" />
+    </url-mapping> 
+     <url-mapping id="graduadoOfertaLaboral">
+        <pattern value="/graduadoOfertaLaboral"/>
+        <view-id value="/app/views/graduados/graduadoOfertaLaboral.xhtml" />
     </url-mapping>  
     <url-mapping id="graduadoCapacitacion">
         <pattern value="/graduadoCapacitacion"/>

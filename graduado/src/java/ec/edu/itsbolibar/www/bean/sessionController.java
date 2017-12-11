@@ -34,6 +34,7 @@ public class sessionController implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             FacesContext.getCurrentInstance().getExternalContext().redirect(router.login);
         } catch (Exception e) {
+            System.out.println("Error al salir:"+e.getMessage());
         }
     }
 

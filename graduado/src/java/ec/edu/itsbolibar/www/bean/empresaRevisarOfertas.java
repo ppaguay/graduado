@@ -5,6 +5,7 @@
  */
 package ec.edu.itsbolibar.www.bean;
 
+import ec.edu.itsbolivar.www.recursos.Tools;
 import ec.edu.itsbolivar.www.rnegocio.clases.Aplicar_oferta;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
 import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
@@ -54,7 +55,6 @@ public class empresaRevisarOfertas {
             System.out.println("oferta_laboral" + oferta_laboral.getCaract_cargo());
             cargarDatos();
         } catch (Exception ex) {
-
             Logger.getLogger(historiaLaboralController.class.getName()).log(Level.SEVERE, null, ex);
             FacesContext.getCurrentInstance().getExternalContext().redirect("../404");
         }
@@ -86,7 +86,7 @@ public class empresaRevisarOfertas {
         item.setContrato("Si");
         System.out.println("Modificando" + item.getGraduado().getNombre() + item.getOferta_laboral().getEmpresa().getNombre());
         FAplicar_oferta.modificar(item);
-       FAplicar_oferta.actualizarRechazadas(item);
+        FAplicar_oferta.actualizarRechazadas(item);
         cargarDatos();
     }
 
@@ -99,7 +99,11 @@ public class empresaRevisarOfertas {
     public void ver(Aplicar_oferta e) throws Exception {
         edit = true;
         item = FAplicar_oferta.obtener(e.getGraduado().getCodigo(), e.getOferta_laboral().getCodigo());
-        fecha_inicio = convertMillisecondsToString(item.getFecha_inicio());
+        if (item.getFecha_inicio() != null) {
+            fecha_inicio = convertMillisecondsToString(item.getFecha_inicio());
+        } else {
+            fecha_inicio = Tools.optenerfechaActual();
+        }
         fecha_aplica = convertMillisecondsToString(item.getFecha_aplica());
 //para que se carge los datos en los select
 
