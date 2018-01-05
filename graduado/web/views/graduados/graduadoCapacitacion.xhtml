@@ -12,6 +12,11 @@
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $("form[enctype='multipart/form-data']").attr("action", "#{request.contextPath}/app/views/graduados/graduadoCapacitacion.xhtml");
+                        });
+                    </script>
                 <div class="header-content">
                     <h:form >
 
@@ -53,7 +58,7 @@
                             </f:facet>
                             <b:commandButton class=" btn-table-actions" oncomplete="$('.modalAdd').modal()"  action="#{graduadoCapacitacionController.ver(car)}" update="frmadd" ><i class="fa fa-eye" aria-hidden="true"></i></b:commandButton>
                             <b:commandButton class=" btn-table-actions"  action="#{graduadoCapacitacionController.eliminar(car)}" update="frmadd all:frmdatos" ><i class="fa fa-trash" aria-hidden="true"></i></b:commandButton>
-                            
+
                         </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>

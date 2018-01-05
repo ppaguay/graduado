@@ -13,6 +13,11 @@
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("form[enctype='multipart/form-data']").attr("action", "#{request.contextPath}/app/views/graduados/adminGraduado.xhtml");
+                    });
+                </script>
                 <br></br>
                 <div class="header-content">
                     <h:form >
@@ -116,11 +121,13 @@
                         </div>
                     </div>
                 </h:form>
+
             </ui:define>
 
             <ui:define name="modal">
                 modal
             </ui:define>
+
 
         </ui:composition>
 

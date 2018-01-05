@@ -147,6 +147,37 @@ list-links-app{
 .estadosAll{
     text-align: center;
 }
+
+/*para input file*/
+.div-img-subir{}
+.div-img-subir .ui-fileupload .ui-fileupload-buttonbar{
+    background: white;
+    text-align: center;
+    border: none;
+}
+.div-img-subir .ui-fileupload .ui-fileupload-buttonbar .ui-button{
+    background: white;
+
+}
+.div-img-subir .ui-fileupload .ui-fileupload-content {
+    text-align: -webkit-center;
+
+    border: none;
+
+}
+.div-img-subir .ui-fileupload .ui-fileupload-content .ui-fileupload-files tbody tr{
+
+}
+.div-img-subir .ui-fileupload .ui-fileupload-content .ui-fileupload-files tbody tr td{
+    display: -webkit-box;
+    display: block;
+    text-align: center;
+    text-align: -webkit-center;
+}
+.div-img-subir .ui-fileupload .ui-fileupload-content .ui-fileupload-files{
+    text-align: center;
+}
+/*fin input file*/
 @media (max-width: 600px){
     .frm-all{
         overflow-x: scroll;

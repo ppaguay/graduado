@@ -5,6 +5,7 @@
  */
 package ec.edu.itsbolibar.www.bean;
 
+import ec.edu.itsbolivar.www.recursos.SaveFile;
 import ec.edu.itsbolivar.www.rnegocio.clases.Estado_civil;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
 import ec.edu.itsbolivar.www.rnegocio.clases.Tipo_licencia;
@@ -25,6 +26,30 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import com.ocpsoft.pretty.faces.url.URL;
+import com.sun.faces.facelets.util.Path;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.servlet.ServletContext;
+
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -155,6 +180,16 @@ public class templateGraduadosController {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-    
+    //for photo
+    public void upload(FileUploadEvent event) throws IOException, Exception {
+        //"/img/usuarios/" path for image perfil  
+        //"/img/logo/" path for image logo of poll
+        String urlFoto = SaveFile.copyFile(event.getFile().getFileName(), event.getFile().getInputstream(),"/img/foto/img");
+        item.setFoto(urlFoto);
+        FGraduado.modificar(item);
+        System.out.println("correct");
+        // FacesContext.getCurrentInstance().getExternalContext().redirect(router.admin);
+
+    }
 
 }

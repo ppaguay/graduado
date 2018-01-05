@@ -13,6 +13,11 @@
         <ui:composition template="./../../templateGraduado.xhtml">
 
             <ui:define name="content">
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("form[enctype='multipart/form-data']").attr("action", "#{request.contextPath}/app/views/graduados/graduadoResultados.xhtml");
+                    });
+                </script>
                 <div class="header-content">
                     <h:form >
                         <samp class="text-muted center_content-text title-content  ">Resultados</samp>

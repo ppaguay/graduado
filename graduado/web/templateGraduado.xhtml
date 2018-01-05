@@ -4,25 +4,26 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta name="description" content="App Graduados"/>
-
+        <title>Admin</title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="robots" content="all,follow"/>
         <h:outputStylesheet name="lib/bootstrap/css/bootstrap.min.css"/>
         <h:outputStylesheet name="css/styleadmin.css"/>
         <h:outputStylesheet name="css/authentication.css"/>
         <h:outputStylesheet name="lib/font-awesome-4.7.0/css/font-awesome.min.css"/>
         <h:outputStylesheet name="lib/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"/>
 
-        <h:outputScript name="lib/jquery/jquery-3.2.1.min.js" />
+        <!--  <h:outputScript name="lib/jquery/jquery-3.2.1.min.js" />-->
         <h:outputScript name="lib/popper.min.js" />
         <h:outputScript name="lib/bootstrap/js/bootstrap.js" />
-        <!--<h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js" />-->
+        <h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js" />
         <h:outputScript name="lib/chart.js/dist/Chart.min.js" />
         <h:outputScript name="js/off-canvas.js" />
         <h:outputScript name="js/hoverable-collapse.js" />
@@ -33,6 +34,7 @@
         <h:outputScript name="js/admin.js" />
 
         <h:outputStylesheet name="css/jquery.bxslider.css"/>
+        <!--por q noo es compatible glassfish con pettryfaces usamos jquery-->
 
         <title>Admin</title>
         <f:event type="preRenderView" listener="#{sessionController.verificarLogeoGraduado()}"></f:event>
@@ -54,7 +56,7 @@
                     </form>
                     <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
                         <li class="nav-item">
-                               <h:form id="frm_session">
+                            <h:form id="frm_session">
                                 <h:commandLink  action="#{sessionController.closeSession()}"  class="nav-link profile-pic btn-session" ><i class="fa fa-sign-out" aria-hidden="true"></i></h:commandLink>
                             </h:form>
 
@@ -72,9 +74,9 @@
                 <div class="row row-offcanvas row-offcanvas-right">
                     <nav style="box-shadow: 1px 0 5px -2px #ccc;" class="bg-white sidebar sidebar-fixed sidebar-offcanvas" id="sidebar">
                         <div class="user-info">
-                            <h:form class="form-perfil" id="frm_perfil">
+                            <b:form class="form-perfil" id="frm_perfil">
                                 <div class="div-perfil">
-                                    <img src="img/graduado.png" alt=""/>
+                                    <img src="#{routingController.pathProyect}#{templateGraduadosController.item.foto}" alt=""/>
 
                                     <b:kebab content-disabled="false" id="kebabId"  class="kebab-app">
                                         <b:listLinks  class="list-links-app">
@@ -89,7 +91,7 @@
                                 <p class="name">#{templateGraduadosController.item.nombre}</p>
 
                                 <p class="designation">Graduado</p>
-                            </h:form>
+                            </b:form>
                             <span class="online"></span>
                         </div>
                         <ul class="nav" style="display: block;">
@@ -167,6 +169,12 @@
                     <div class="card mx-4 form-add" >
                         <div class="card-body p-4">
                             <p class="text-muted">Actualizar Perfil</p>
+                            <div class="form-group" style="text-align: center">
+                                <img style="width: 5em;height: 5em;" src="#{routingController.pathProyect}#{templateGraduadosController.item.foto}" alt="..." class="img-fluid rounded-circle"/>
+                                <br></br>
+                                <a style="margin-left: 0!important;margin-top: 0.2em" class="btn btn-default btn-redondo" onclick="$('.modalEditFoto').modal();$('.modalShowEditPerfil').modal('hide')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+                            </div>
                             <div class="input-group mb-3">
                                 <b:inputText disabled="true"  value="#{templateGraduadosController.item.nombre}" placeholder="Nombre" required="true" label="Nombre"  >
                                     <f:facet name="prepend" class="icono-input" >
@@ -297,6 +305,23 @@
                 <b:button value="Ok" look="primary" dismiss="modal" />
             </f:facet>
         </b:modal>
+        <b:modal class="modalEditFoto">
+            <h:form id="frm_foto" enctype="multipart/form-data">
+                <div class="form-group">
+                    <h2>Foto</h2>
+                </div>
+                <div class="form-group div-img-subir">
+                    <p:fileUpload    fileUploadListener="#{templateGraduadosController.upload}" mode="advanced" dragDropSupport="false"
+                                     multiple="false" update=":frm_perfil :frm_perfil_contenido" sizeLimit="1000000" fileLimit="10" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />  
+                </div>
+            </h:form>
+            <f:facet name="footer">
+                <!-- <b:button value="Close" dismiss="modal" />-->
+                <b:button value="Cerrar" look="danger" dismiss="modal" onclick="$('.modalShowEditPerfil').modal()" />
+            </f:facet>
+        </b:modal>
+        <!--no soporta pettry glassfish por eso-->
+        <ui:insert name="scriptFile"></ui:insert>
         <h:outputScript name="js/jquery.bxslider_1.js" />
     </h:body>
 

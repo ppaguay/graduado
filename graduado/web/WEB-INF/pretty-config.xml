@@ -142,5 +142,11 @@
         <pattern value="/ejecutivoCuestionarioUsuarioShow/#{id_cuestionario}/#{id_usuario}/#{id_encuesta}"/>
         <view-id value="/app/view/ejecutivoCuestionarioUsuarioShow.xhtml" />
     </url-mapping>-->
-
+    
+    <!--test-->
+    <url-mapping id="test">
+        <pattern value="/test"/>
+        <view-id value="/app/index.xhtml" />
+    </url-mapping> 
+    
 </pretty-config>

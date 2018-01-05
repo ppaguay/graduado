@@ -97,7 +97,7 @@ public class authentication {
 
                 FacesContext.getCurrentInstance().getExternalContext().redirect("adminGraduado");
             } else {
-                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o ContraseÃ±a "));
+                FacesContext.getCurrentInstance().addMessage("Warning ", new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Error de Usuario o Contraseña "));
             }
         }
         if (tipo_usuario == 3) {//empresa
