@@ -11,9 +11,9 @@ and open the template in the editor.
 .app-background{
     /*    background-color: white;*/
     background-size: cover;
-    background-repeat: round;
+    background-repeat: no-repeat;
     transition: opacity 0.1s, -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
-
+    background: lightblue url("../../img/backgrounds2.jpeg") ; 
 }
 .select-app{
     height: auto!important;
@@ -29,10 +29,8 @@ and open the template in the editor.
     text-align: center;
 }
 .img-graduados{
-    width: 6em;
-    height: 6em;
-    border-radius:50%;
-}
+    width: 100%;
+ }
 
 .btn-session{
     background: none!important;
