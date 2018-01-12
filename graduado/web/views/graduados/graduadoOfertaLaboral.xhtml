@@ -75,6 +75,9 @@
                                     <b:inputText disabled="true" value="#{graduadoOfertaLaboralController.item.empresa.nombre}" 
                                                  label="Empresa"   >
                                     </b:inputText>
+                                    <b:inputText disabled="true" value="#{graduadoOfertaLaboralController.item.tipo_sueldo.rango}" 
+                                                 label="Sueldo"   >
+                                    </b:inputText>
 
                                     <b:commandButton  action="#{graduadoOfertaLaboralController.aplicar()}"  class="btn btn-block btn-success" look="btn btn-success" 
                                                      value="Aplicar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
