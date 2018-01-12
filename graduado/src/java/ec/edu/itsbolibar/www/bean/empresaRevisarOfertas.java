@@ -8,8 +8,10 @@ package ec.edu.itsbolibar.www.bean;
 import ec.edu.itsbolivar.www.recursos.Tools;
 import ec.edu.itsbolivar.www.rnegocio.clases.Aplicar_oferta;
 import ec.edu.itsbolivar.www.rnegocio.clases.Graduado;
+import ec.edu.itsbolivar.www.rnegocio.clases.Historia_laboral;
 import ec.edu.itsbolivar.www.rnegocio.clases.Oferta_laboral;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FAplicar_oferta;
+import ec.edu.itsbolivar.www.rnegocio.funciones.FHistoria_laboral;
 import ec.edu.itsbolivar.www.rnegocio.funciones.FOferta_laboral;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -39,6 +41,7 @@ public class empresaRevisarOfertas {
     Aplicar_oferta item = new Aplicar_oferta();
 
     ArrayList<Aplicar_oferta> lst_aplica_oferta = new ArrayList<>();
+    ArrayList<Historia_laboral> lst_historia_laboral_Select_User = new ArrayList<>();
     Oferta_laboral oferta_laboral = new Oferta_laboral();
 
     String fecha_aplica = "";
@@ -97,6 +100,7 @@ public class empresaRevisarOfertas {
     }
 
     public void ver(Aplicar_oferta e) throws Exception {
+
         edit = true;
         item = FAplicar_oferta.obtener(e.getGraduado().getCodigo(), e.getOferta_laboral().getCodigo());
         if (item.getFecha_inicio() != null) {
@@ -106,6 +110,8 @@ public class empresaRevisarOfertas {
         }
         fecha_aplica = convertMillisecondsToString(item.getFecha_aplica());
 //para que se carge los datos en los select
+        lst_historia_laboral_Select_User = new ArrayList<>();
+        lst_historia_laboral_Select_User = FHistoria_laboral.obtener(e.getGraduado());
 
     }
 
@@ -239,6 +245,14 @@ public class empresaRevisarOfertas {
 
     public void setOferta_laboral(Oferta_laboral oferta_laboral) {
         this.oferta_laboral = oferta_laboral;
+    }
+
+    public ArrayList<Historia_laboral> getLst_historia_laboral_Select_User() {
+        return lst_historia_laboral_Select_User;
+    }
+
+    public void setLst_historia_laboral_Select_User(ArrayList<Historia_laboral> lst_historia_laboral_Select_User) {
+        this.lst_historia_laboral_Select_User = lst_historia_laboral_Select_User;
     }
 
 }

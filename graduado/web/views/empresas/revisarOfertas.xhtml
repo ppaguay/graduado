@@ -25,7 +25,7 @@
                     </h:form>
                 </div>
                 <h:form class="frm-all" id="frmdatos">
-                   
+
                     <b:dataTable searching="true" value="#{empresaRevisarOfertas.lst_aplica_oferta}"
                                  var="car">
 
@@ -110,7 +110,34 @@
 
                                     </b:inputText>
 
-                                    
+                                    <b:dataTable searching="true" value="#{empresaRevisarOfertas.lst_historia_laboral_Select_User}"
+                                                 var="car">
+                                        <b:dataTableColumn>
+                                            <f:facet name="header">
+                                                Empresa
+                                            </f:facet>
+                                            #{car.empresa}   
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn>
+                                            <f:facet name="header">
+                                                Empresa
+                                            </f:facet>
+                                            #{car.tipo_cargo.nombre}   
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn>
+                                            <f:facet name="header">
+                                                Fecha Inicio
+                                            </f:facet>
+                                            #{empresaRevisarOfertas.convertMillisecondsToString(car.fechainicio)}
+                                        </b:dataTableColumn>
+                                         <b:dataTableColumn>
+                                            <f:facet name="header">
+                                                Fecha Fin
+                                            </f:facet>
+                                          #{empresaRevisarOfertas.convertMillisecondsToString(car.fechafin)}
+                                        </b:dataTableColumn>
+
+                                    </b:dataTable>
 
 
 
@@ -122,8 +149,8 @@
 
                                         </c:when>
                                         <c:when test="#{empresaRevisarOfertas.edit==true}">
-                                           
-                                           
+
+
 
                                             <b:commandButton  action="#{empresaRevisarOfertas.actualizar()}"  class="btn btn-block btn-success" look="btn btn-success" value="Contratar" update="@form messages frmadd all:frmdatos" ></b:commandButton>
 
