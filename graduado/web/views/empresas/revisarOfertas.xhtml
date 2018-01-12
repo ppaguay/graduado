@@ -112,7 +112,7 @@
                                     <b:inputText  rendered="#{empresaRevisarOfertas.edit}" value="#{empresaRevisarOfertas.fecha_inicio}" placeholder="Fecha" required="true" label="Fecha Inicio" type="date"  >
 
                                     </b:inputText>
-
+                                    <p class="text-muted">Historia Laboral</p>
                                     <b:dataTable searching="true" value="#{empresaRevisarOfertas.lst_historia_laboral_Select_User}"
                                                  var="car">
                                         <b:dataTableColumn>
@@ -133,11 +133,11 @@
                                             </f:facet>
                                             #{empresaRevisarOfertas.convertMillisecondsToString(car.fechainicio)}
                                         </b:dataTableColumn>
-                                         <b:dataTableColumn>
+                                        <b:dataTableColumn>
                                             <f:facet name="header">
                                                 Fecha Fin
                                             </f:facet>
-                                          #{empresaRevisarOfertas.convertMillisecondsToString(car.fechafin)}
+                                            #{empresaRevisarOfertas.convertMillisecondsToString(car.fechafin)}
                                         </b:dataTableColumn>
 
                                     </b:dataTable>
