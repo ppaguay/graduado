@@ -24,7 +24,7 @@
         <h:outputStylesheet name="lib/perfect-scrollbar/dist/css/perfect-scrollbar.min.css"/>
 
 
-      <!--  <h:outputScript name="lib/jquery/jquery-3.2.1.min.js" />-->
+        <!--  <h:outputScript name="lib/jquery/jquery-3.2.1.min.js" />-->
         <h:outputScript name="lib/popper.min.js" />
         <h:outputScript name="lib/bootstrap/js/bootstrap.js" />
         <h:outputScript name="lib/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"/>
@@ -60,8 +60,8 @@
                     </form>
                     <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
                         <li class="nav-item">
-                               <h:form id="frm_session">
-                                   <span>Salir</span>
+                            <h:form style="display: inline-flex;" id="frm_session">
+                                <span style="color: white;margin-top: 0.5em;margin-right: 0.3em;">Salir</span>
                                 <h:commandLink  action="#{sessionController.closeSession()}"  class="nav-link profile-pic btn-session" ><i class="fa fa-sign-out" aria-hidden="true"></i></h:commandLink>
                             </h:form>
 

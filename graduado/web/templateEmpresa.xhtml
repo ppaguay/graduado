@@ -55,7 +55,8 @@
                     </form>
                     <ul class="navbar-nav ml-lg-auto d-flex align-items-center flex-row">
                         <li class="nav-item">
-                            <h:form id="frm_session">
+                            <h:form style="display: inline-flex;" id="frm_session">
+                                <span style="color: white;margin-top: 0.5em;margin-right: 0.3em;">Salir</span>
                                 <h:commandLink  action="#{sessionController.closeSession()}"  class="nav-link profile-pic btn-session" ><i class="fa fa-sign-out" aria-hidden="true"></i></h:commandLink>
                             </h:form>
 
