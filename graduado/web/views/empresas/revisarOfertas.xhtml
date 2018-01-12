@@ -103,6 +103,9 @@
                                 <div class="card-body p-4">
 
                                     <p class="text-muted">Nuevo Contrato</p>
+                                    <b:inputText disabled="true" value="#{empresaRevisarOfertas.item.graduado.nombre}" placeholder="Nombres"  label="Nombres"   >
+
+                                    </b:inputText>
                                     <b:inputText disabled="true" value="#{empresaRevisarOfertas.fecha_aplica}" placeholder="Fecha" required="true" label="Fecha Aplica" type="date"  >
 
                                     </b:inputText>
@@ -120,7 +123,7 @@
                                         </b:dataTableColumn>
                                         <b:dataTableColumn>
                                             <f:facet name="header">
-                                                Empresa
+                                                Cargo
                                             </f:facet>
                                             #{car.tipo_cargo.nombre}   
                                         </b:dataTableColumn>
